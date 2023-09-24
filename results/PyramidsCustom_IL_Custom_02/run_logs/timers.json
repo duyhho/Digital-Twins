@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1695513700",
+        "python_version": "3.9.18 (main, Sep 11 2023, 14:09:26) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\dhh3hb\\Anaconda3\\envs\\ml-agents-230\\Scripts\\mlagents-learn D:\\GitHub\\MLAgents_2021\\config/Pyramids.yaml --run-id PyramidsCustom_IL_Custom_02",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1695513725"
+    },
+    "total": 25.0161855,
+    "count": 1,
+    "self": 0.019284599999998875,
+    "children": {
+        "run_training.setup": {
+            "total": 0.12591170000000007,
+            "count": 1,
+            "self": 0.12591170000000007
+        },
+        "TrainerController.start_learning": {
+            "total": 24.8709892,
+            "count": 1,
+            "self": 0.0001715999999980511,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 24.8707914,
+                    "count": 1,
+                    "self": 24.8707914
+                },
+                "TrainerController._save_models": {
+                    "total": 2.6200000000642376e-05,
+                    "count": 1,
+                    "self": 2.6200000000642376e-05
+                }
+            }
+        }
+    }
+}

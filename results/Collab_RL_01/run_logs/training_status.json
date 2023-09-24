@@ -1,0 +1,38 @@
+{
+    "DynamicHallwayFireCollabRL": {
+        "checkpoints": [
+            {
+                "steps": 499964,
+                "file_path": "results\\Collab_RL_01\\DynamicHallwayFireCollabRL\\DynamicHallwayFireCollabRL-499964.onnx",
+                "reward": 1.7745303003625437,
+                "creation_time": 1695582974.2320018,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\DynamicHallwayFireCollabRL\\DynamicHallwayFireCollabRL-499964.pt"
+                ]
+            },
+            {
+                "steps": 616810,
+                "file_path": "results\\Collab_RL_01\\DynamicHallwayFireCollabRL\\DynamicHallwayFireCollabRL-616810.onnx",
+                "reward": 1.9205454587936401,
+                "creation_time": 1695583269.6670053,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\DynamicHallwayFireCollabRL\\DynamicHallwayFireCollabRL-616810.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 616810,
+            "file_path": "results\\Collab_RL_01\\DynamicHallwayFireCollabRL.onnx",
+            "reward": 1.9205454587936401,
+            "creation_time": 1695583269.6670053,
+            "auxillary_file_paths": [
+                "results\\Collab_RL_01\\DynamicHallwayFireCollabRL\\DynamicHallwayFireCollabRL-616810.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

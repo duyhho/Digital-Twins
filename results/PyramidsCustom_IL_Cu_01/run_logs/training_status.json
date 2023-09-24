@@ -1,0 +1,38 @@
+{
+    "PyramidsILCu": {
+        "checkpoints": [
+            {
+                "steps": 499917,
+                "file_path": "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu\\PyramidsILCu-499917.onnx",
+                "reward": 1.759666621685028,
+                "creation_time": 1695511743.4288566,
+                "auxillary_file_paths": [
+                    "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu\\PyramidsILCu-499917.pt"
+                ]
+            },
+            {
+                "steps": 685190,
+                "file_path": "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu\\PyramidsILCu-685190.onnx",
+                "reward": null,
+                "creation_time": 1695512220.4032764,
+                "auxillary_file_paths": [
+                    "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu\\PyramidsILCu-685190.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 685190,
+            "file_path": "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu.onnx",
+            "reward": null,
+            "creation_time": 1695512220.4032764,
+            "auxillary_file_paths": [
+                "results\\PyramidsCustom_IL_Cu_01\\PyramidsILCu\\PyramidsILCu-685190.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
