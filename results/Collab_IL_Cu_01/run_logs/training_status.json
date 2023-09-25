@@ -1,0 +1,65 @@
+{
+    "CollabILCu": {
+        "checkpoints": [
+            {
+                "steps": 3499982,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3499982.onnx",
+                "reward": 5.834000110626221,
+                "creation_time": 1695623532.8706264,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3499982.pt"
+                ]
+            },
+            {
+                "steps": 3999958,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3999958.onnx",
+                "reward": 5.120749980211258,
+                "creation_time": 1695624564.646057,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3999958.pt"
+                ]
+            },
+            {
+                "steps": 4499965,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4499965.onnx",
+                "reward": 5.177655162482426,
+                "creation_time": 1695625613.7853603,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4499965.pt"
+                ]
+            },
+            {
+                "steps": 4999932,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4999932.onnx",
+                "reward": 5.192333300908406,
+                "creation_time": 1695626664.6445234,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4999932.pt"
+                ]
+            },
+            {
+                "steps": 5000789,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.onnx",
+                "reward": 5.073399925231934,
+                "creation_time": 1695626664.841551,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000789,
+            "file_path": "results\\Collab_IL_Cu_01\\CollabILCu.onnx",
+            "reward": 5.073399925231934,
+            "creation_time": 1695626664.841551,
+            "auxillary_file_paths": [
+                "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

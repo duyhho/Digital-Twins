@@ -1,0 +1,65 @@
+{
+    "CollabRLOnly": {
+        "checkpoints": [
+            {
+                "steps": 3499993,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499993.onnx",
+                "reward": 4.957555628485149,
+                "creation_time": 1695637138.2156763,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499993.pt"
+                ]
+            },
+            {
+                "steps": 3999974,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999974.onnx",
+                "reward": 4.882000088691711,
+                "creation_time": 1695638257.2057662,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999974.pt"
+                ]
+            },
+            {
+                "steps": 4499979,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499979.onnx",
+                "reward": 4.53833332657814,
+                "creation_time": 1695639377.2146335,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499979.pt"
+                ]
+            },
+            {
+                "steps": 4999976,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999976.onnx",
+                "reward": 4.4858461526724005,
+                "creation_time": 1695640497.3754685,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999976.pt"
+                ]
+            },
+            {
+                "steps": 5000050,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.onnx",
+                "reward": 4.583571434020996,
+                "creation_time": 1695640497.4646955,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000050,
+            "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly.onnx",
+            "reward": 4.583571434020996,
+            "creation_time": 1695640497.4646955,
+            "auxillary_file_paths": [
+                "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

@@ -124,7 +124,6 @@ public class ModernRoomGenerator : MonoBehaviour
 
     public GameObject cornerPrefab;
     public bool cornerRotation = false;
-
     public int maximumRoomCount = 10;
     [Header("Room Count Randomization")]
     public bool randomizeRoomCount = false;

@@ -12,6 +12,16 @@ TagManager:
   - goal
   - stone
   - switchOn
+  - ground
+  - corridor
+  - fire
+  - door_switch
+  - water
+  - symbol_O_Goal
+  - robot
+  - trocar
+  - collab_agent
+  - collab_agent_on
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class CollabFireAgent : DungeonAgentFire
 {
     public FireLifeScript fireLifeScript;
     float parentOffsetHeight;
+    public int agentCount = 1;
     public override void Initialize()
     {
         base.Initialize();
@@ -27,6 +28,7 @@ public class CollabFireAgent : DungeonAgentFire
         RaycastUpdateGrid(); //thiDynamicHallwayFireCollab doesn't collect any observations ,just updating grid cell status;
         if (useVectorObs)
         {
+            sensor.AddObservation(agentCount);
             sensor.AddObservation(StepCount / (float)MaxStep);
             //The key takeaway is that InverseTransformDirection uses the object's (in this case, the car's) current orientation to convert a direction from world space to that object's local space. 
             sensor.AddObservation(transform.InverseTransformDirection(m_AgentRb.velocity));
@@ -59,6 +61,14 @@ public class CollabFireAgent : DungeonAgentFire
     protected override void OnCollisionEnter(Collision col)
     {
         base.OnCollisionEnter(col);
+        // if (col.gameObject.CompareTag("collab_agent"))
+        // {
+        //     CollaborativeAgentScript collabComponent = col.gameObject.GetComponent<CollaborativeAgentScript>();
+        //     if (collabComponent.isAwake == false)
+        //     {
+        //         agentCount++;
+        //     }
+        // }
     }
     protected override void OnCollisionStay(Collision col)
     {
@@ -79,30 +89,17 @@ public class CollabFireAgent : DungeonAgentFire
     {
         if (other.gameObject.CompareTag("fire"))
         {
-            int agentCount = fireLifeScript.agentCount;
-            if (agentCount > 1)
-            {
-                SetReward(2f * agentCount);
-            }
-            else
-            {
-                SetReward(2f);
-            }
+            Debug.Log("Agent Count: " + agentCount);
+
+            SetReward(2f * agentCount);
+
             // StartCoroutine(DelayedEndEpisode());
             if (isEvaluation)
             {
                 UpdateModelStats();
-                ResetEnvironment();
             }
+            // ResetEnvironment();
             EndEpisode();
-            // if (fireLifeScript != null)
-            // {
-            //     if (fireLifeScript.fireLife <= 0)
-            //     {
-            //         // StartCoroutine(GoalScoredSwapGroundMaterial(m_HallwaySettings.goalScoredMaterial, 0.5f));
-            //     }
-
-            // }
         }
 
     }
@@ -126,11 +123,6 @@ public class CollabFireAgent : DungeonAgentFire
             Debug.Log("Average time to reach the fire successfully (Model Set " + modelIndex + "): " + averageTime + " seconds");
             Debug.Log("Success rate (Model Set " + modelIndex + "): " + ((float)currentStats.successfulAttempts / currentStats.attemptCount) * 100 + "% (" + currentStats.successfulAttempts + "-" + currentStats.attemptCount + ")");
         }
-        else
-        {
-            Debug.Log("Reached Fire without water! Failed!");
-        }
-
     }
     public override void Heuristic(in ActionBuffers actionsOut)
     {
@@ -143,12 +135,18 @@ public class CollabFireAgent : DungeonAgentFire
 
     public override void OnEpisodeBegin()
     {
-        base.OnEpisodeBegin();
+        // base.OnEpisodeBegin();
+        if (isEvaluation)
+        {
+            CheckCurrentEvaluationModels();
+        }
+        episodeStartTime = Time.time;
+        m_Configuration = modernRoomGenerator.maximumRoomCount;
         ResetEnvironment();
-        // parentOffsetHeight = modernRoomGenerator.parentOffsetHeight;
-        // if (modernRoomGenerator.parentOffsetHeight <= -9000f)
+
+        // if (!isEvaluation)
         // {
-        //     parentOffsetHeight = area.transform.position.y;
+        //     ResetEnvironment();
         // }
         parentOffsetHeight = area.transform.position.y;
 
@@ -167,15 +165,65 @@ public class CollabFireAgent : DungeonAgentFire
         }
         transform.position = newStartPosition;
         transform.rotation = Quaternion.identity;
-
-        // Debug.Log("newStartPosition" + newStartPosition);
-
-        // Reset all doors in the scene
-
     }
     protected override void CheckCurrentEvaluationModels()
     {
-        base.CheckCurrentEvaluationModels();
+        // base.CheckCurrentEvaluationModels();
+        if (isEvaluation)
+        {
+            // If all models have been tested in the current layout
+            if (modelIndex >= totalModelSets - 1)
+            {
+                modelIndex = -1;  // Reset the index to -1
+                // ResetEnvironment(); // Generate a new environment layout here
+            }
+            modelIndex += 1;  // Increment modelIndex at the start
+
+            // Ensure modelIndex is in bounds before using it to index into modelStatsList
+            if (modelIndex < totalModelSets)
+            {
+                modelStatsList[modelIndex].attemptCount += 1;
+            }
+
+            Debug.Log("ON EPISODE END! Current Model Set: " + modelIndex);
+
+
+        }
+        if (isEvaluation)
+        {
+            bool allAttemptsExceeded = true;
+            foreach (var modelStats in modelStatsList)
+            {
+                if (modelStats.attemptCount < maxAttempts)
+                {
+                    allAttemptsExceeded = false;
+                    break;
+                }
+            }
+
+            if (allAttemptsExceeded)
+            {
+                // Print a summary of all metrics
+                for (int i = 0; i < modelStatsList.Count; i++)
+                {
+                    var modelStats = modelStatsList[i];
+                    float averageTime = modelStats.cumulativeTimeToReachFire / modelStats.successfulAttempts;
+                    float successRate = ((float)modelStats.successfulAttempts / modelStats.attemptCount) * 100;
+
+                    Debug.Log("Model Set " + i + " Summary:");
+                    Debug.Log(" - Average Time: " + averageTime + " seconds");
+                    Debug.Log(" - Success Rate: " + successRate + "% (" + modelStats.successfulAttempts + "/" + modelStats.attemptCount + ")");
+
+                }
+#if UNITY_EDITOR
+                EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+            }
+
+        }
+
     }
     public override void ResetEnvironment()
     {
@@ -190,13 +238,49 @@ public class CollabFireAgent : DungeonAgentFire
             // symbolOGoal.transform.position = randomFirePosition;
         }
         CollaborativeAgentScript[] allCollabAgents = area.GetComponentsInChildren<CollaborativeAgentScript>();
-        foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+        if (!isEvaluation)
         {
-            Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
-            // Debug.Log("randomPosition: " + randomPosition);
-            cAgent.gameObject.transform.position = randomPosition;
-            cAgent.Reset();
+            foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+            {
+                Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
+                // Debug.Log("randomPosition: " + randomPosition);
+                cAgent.gameObject.transform.position = randomPosition;
+                cAgent.Reset();
+            }
         }
+        else
+        {
+            if (modelIndex >= totalModelSets - 1)
+            {
+                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+                {
+                    Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
+                    // Debug.Log("randomPosition: " + randomPosition);
+                    cAgent.gameObject.transform.position = randomPosition;
+                    cAgent.Reset();
+                }
+            }
+            else
+            {
+                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+                {
+                    cAgent.gameObject.transform.position = cAgent.sleepPosition;
+                    cAgent.Reset();
+                }
+
+            }
+
+        }
+        // Reset all doors in the scene
+        DoorController[] allDoors = area.GetComponentsInChildren<DoorController>();
+        foreach (DoorController door in allDoors)
+        {
+            door.Reset();
+        }
+        transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
+        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+        m_AgentRb.velocity *= 0f;
+        agentCount = 1;
     }
     public override void PlayWaterAndStopFire()
     {
@@ -211,10 +295,6 @@ public class CollabFireAgent : DungeonAgentFire
     /// Configures the agent's neural network model based on the specified room configuration.
     /// </summary>
     /// <param name="config">The configuration identifier. Accepts values 2, 3, and others for default behavior.</param>
-    // protected override void ConfigureAgent(int config)
-    // {
-    //     base.ConfigureAgent(config);
-    // }
     protected override void ConfigureAgent(int config)
     {
         if (!isEvaluation) //keep this for training logic
@@ -272,6 +352,7 @@ public class CollabFireAgent : DungeonAgentFire
                 };
 
                 int modelIndexInSet = config - 2;
+                // Debug.Log("Current Model: " + currentModelSet.Models[modelIndexInSet]);
                 if (modelIndexInSet >= 0 && modelIndexInSet < currentModelSet.Models.Count)
                 {
                     SetModel(behaviorName, currentModelSet.Models[modelIndexInSet]);

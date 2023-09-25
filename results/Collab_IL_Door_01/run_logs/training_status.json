@@ -1,0 +1,65 @@
+{
+    "CollabILDoor": {
+        "checkpoints": [
+            {
+                "steps": 1999967,
+                "file_path": "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-1999967.onnx",
+                "reward": 4.771846149976437,
+                "creation_time": 1695590000.533385,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-1999967.pt"
+                ]
+            },
+            {
+                "steps": 2499983,
+                "file_path": "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-2499983.onnx",
+                "reward": 5.1418571557317465,
+                "creation_time": 1695591088.6485002,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-2499983.pt"
+                ]
+            },
+            {
+                "steps": 2999974,
+                "file_path": "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-2999974.onnx",
+                "reward": 5.20799994468689,
+                "creation_time": 1695592174.0894072,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-2999974.pt"
+                ]
+            },
+            {
+                "steps": 3499952,
+                "file_path": "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-3499952.onnx",
+                "reward": 4.618105273497732,
+                "creation_time": 1695593262.7530634,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-3499952.pt"
+                ]
+            },
+            {
+                "steps": 3705506,
+                "file_path": "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-3705506.onnx",
+                "reward": 4.661066689093908,
+                "creation_time": 1695593752.539738,
+                "auxillary_file_paths": [
+                    "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-3705506.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3705506,
+            "file_path": "results\\Collab_RL_01\\CollabILDoor.onnx",
+            "reward": 4.661066689093908,
+            "creation_time": 1695593752.539738,
+            "auxillary_file_paths": [
+                "results\\Collab_RL_01\\CollabILDoor\\CollabILDoor-3705506.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

@@ -662,7 +662,6 @@ public class DungeonAgentFire : Agent
                     Debug.Log(" - Success Rate: " + successRate + "% (" + modelStats.successfulAttempts + "/" + modelStats.attemptCount + ")");
 
                 }
-
 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
 #else
