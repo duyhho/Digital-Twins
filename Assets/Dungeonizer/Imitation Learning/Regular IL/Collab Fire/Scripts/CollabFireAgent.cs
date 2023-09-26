@@ -11,6 +11,7 @@ public class CollabFireAgent : DungeonAgentFire
     public FireLifeScript fireLifeScript;
     float parentOffsetHeight;
     public int agentCount = 1;
+    public bool shouldRandomize = false;
     public override void Initialize()
     {
         base.Initialize();
@@ -98,6 +99,10 @@ public class CollabFireAgent : DungeonAgentFire
             {
                 UpdateModelStats();
             }
+            else
+            {
+                shouldRandomize = true;
+            }
             // ResetEnvironment();
             EndEpisode();
         }
@@ -143,28 +148,6 @@ public class CollabFireAgent : DungeonAgentFire
         episodeStartTime = Time.time;
         m_Configuration = modernRoomGenerator.maximumRoomCount;
         ResetEnvironment();
-
-        // if (!isEvaluation)
-        // {
-        //     ResetEnvironment();
-        // }
-        parentOffsetHeight = area.transform.position.y;
-
-        Vector3 newStartPosition = roomManager.startPoint + new Vector3(0f, parentOffsetHeight, 0f);
-        newStartPosition.y = parentOffsetHeight;
-        Vector3 randomFirePosition = roomManager.GetRandomGoalPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
-        randomFirePosition.y = parentOffsetHeight;
-
-        if (symbolOGoal)
-        {
-            fireLifeScript = symbolOGoal.GetComponent<FireLifeScript>();
-            // fireLifeScript.Reset();
-
-            symbolOGoal.transform.position = randomFirePosition;
-            // Debug.Log("randomFirePosition" + randomFirePosition);
-        }
-        transform.position = newStartPosition;
-        transform.rotation = Quaternion.identity;
     }
     protected override void CheckCurrentEvaluationModels()
     {
@@ -175,6 +158,7 @@ public class CollabFireAgent : DungeonAgentFire
             if (modelIndex >= totalModelSets - 1)
             {
                 modelIndex = -1;  // Reset the index to -1
+                shouldRandomize = true;
                 // ResetEnvironment(); // Generate a new environment layout here
             }
             modelIndex += 1;  // Increment modelIndex at the start
@@ -240,24 +224,68 @@ public class CollabFireAgent : DungeonAgentFire
         CollaborativeAgentScript[] allCollabAgents = area.GetComponentsInChildren<CollaborativeAgentScript>();
         if (!isEvaluation)
         {
-            foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+
+            // gridManager.ResetGrid();
+            if (shouldRandomize)
             {
-                Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
-                // Debug.Log("randomPosition: " + randomPosition);
-                cAgent.gameObject.transform.position = randomPosition;
-                cAgent.Reset();
-            }
-        }
-        else
-        {
-            if (modelIndex >= totalModelSets - 1)
-            {
+                modernRoomGenerator.ClearOldDungeon();
+                modernRoomGenerator.Generate();
                 foreach (CollaborativeAgentScript cAgent in allCollabAgents)
                 {
                     Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
                     // Debug.Log("randomPosition: " + randomPosition);
                     cAgent.gameObject.transform.position = randomPosition;
                     cAgent.Reset();
+                }
+                Vector3 randomFirePosition = roomManager.GetRandomGoalPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
+                randomFirePosition.y = parentOffsetHeight;
+
+                if (symbolOGoal)
+                {
+                    fireLifeScript = symbolOGoal.GetComponent<FireLifeScript>();
+                    // fireLifeScript.Reset();
+
+                    symbolOGoal.transform.position = randomFirePosition;
+                    // Debug.Log("randomFirePosition" + randomFirePosition);
+                }
+            }
+            else
+            {
+                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+                {
+                    Debug.Log("cAgent.sleepPosition " + cAgent.sleepPosition);
+
+                    cAgent.gameObject.transform.position = cAgent.sleepPosition;
+                    cAgent.Reset();
+                }
+            }
+        }
+        else
+        {
+            if (modelIndex >= totalModelSets - 1)
+            {
+                if (shouldRandomize)
+                {
+                    modernRoomGenerator.ClearOldDungeon();
+                    modernRoomGenerator.Generate();
+                }
+                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+                {
+                    Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f);
+                    // Debug.Log("randomPosition: " + randomPosition);
+                    cAgent.gameObject.transform.position = randomPosition;
+                    cAgent.Reset();
+                }
+                Vector3 randomFirePosition = roomManager.GetRandomGoalPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
+                randomFirePosition.y = parentOffsetHeight;
+
+                if (symbolOGoal)
+                {
+                    fireLifeScript = symbolOGoal.GetComponent<FireLifeScript>();
+                    // fireLifeScript.Reset();
+
+                    symbolOGoal.transform.position = randomFirePosition;
+                    // Debug.Log("randomFirePosition" + randomFirePosition);
                 }
             }
             else
@@ -277,10 +305,18 @@ public class CollabFireAgent : DungeonAgentFire
         {
             door.Reset();
         }
-        transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
-        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+        parentOffsetHeight = area.transform.position.y;
+
+        Vector3 newStartPosition = roomManager.startPoint + new Vector3(0f, parentOffsetHeight, 0f);
+        newStartPosition.y = parentOffsetHeight;
+
+        transform.position = newStartPosition;
+        transform.rotation = Quaternion.identity;
+        // transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
+        // transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
         m_AgentRb.velocity *= 0f;
         agentCount = 1;
+        shouldRandomize = false;
     }
     public override void PlayWaterAndStopFire()
     {

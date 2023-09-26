@@ -1,0 +1,65 @@
+{
+    "DynamicHallwayFireCollabIL": {
+        "checkpoints": [
+            {
+                "steps": 499978,
+                "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-499978.onnx",
+                "reward": 1.4079999551177025,
+                "creation_time": 1695540720.541031,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-499978.pt"
+                ]
+            },
+            {
+                "steps": 999968,
+                "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-999968.onnx",
+                "reward": 1.936400020122528,
+                "creation_time": 1695541575.7337375,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-999968.pt"
+                ]
+            },
+            {
+                "steps": 1499981,
+                "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-1499981.onnx",
+                "reward": 1.9448196731629919,
+                "creation_time": 1695542517.6019418,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-1499981.pt"
+                ]
+            },
+            {
+                "steps": 1999986,
+                "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-1999986.onnx",
+                "reward": 1.9345079367122953,
+                "creation_time": 1695543535.9711232,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-1999986.pt"
+                ]
+            },
+            {
+                "steps": 2146604,
+                "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-2146604.onnx",
+                "reward": 1.9406071496861321,
+                "creation_time": 1695543900.965335,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-2146604.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2146604,
+            "file_path": "results\\Collab_IL_01\\DynamicHallwayFireCollabIL.onnx",
+            "reward": 1.9406071496861321,
+            "creation_time": 1695543900.965335,
+            "auxillary_file_paths": [
+                "results\\Collab_IL_01\\DynamicHallwayFireCollabIL\\DynamicHallwayFireCollabIL-2146604.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
