@@ -139,7 +139,7 @@ behaviors:
       time_horizon: 128
       summary_freq: 30000
       threaded: true
-  CollabILCu:
+  CollabILCu30:
     trainer_type: ppo
     time_horizon: 128
     max_steps: 1.0e7
@@ -164,15 +164,15 @@ behaviors:
       gail:
         strength: 0.01
         gamma: 0.99
-        demo_path: Demos/SingleModelCollab.demo
+        demo_path: Demos/SingleModelCollab_30.demo
       curiosity:
         strength: 0.02
         gamma: 0.99
         network_settings:
           hidden_units: 256
     behavioral_cloning:
-      demo_path: Demos/SingleModelCollab.demo
-      strength: 0.5
+      demo_path: Demos/SingleModelCollab_30.demo
+      strength: 0.1
       steps: 150000
     keep_checkpoints: 5
     max_steps: 5000000
