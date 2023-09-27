@@ -1,59 +1,59 @@
 {
-    "CollabILCu": {
+    "CollabRL": {
         "checkpoints": [
             {
-                "steps": 3499982,
-                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3499982.onnx",
-                "reward": 5.834000110626221,
-                "creation_time": 1695623532.8706264,
+                "steps": 3499963,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3499963.onnx",
+                "reward": 5.33333329608043,
+                "creation_time": 1695726657.2511299,
                 "auxillary_file_paths": [
-                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3499982.pt"
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3499963.pt"
                 ]
             },
             {
-                "steps": 3999958,
-                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3999958.onnx",
-                "reward": 5.120749980211258,
-                "creation_time": 1695624564.646057,
+                "steps": 3999978,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3999978.onnx",
+                "reward": 4.51200008392334,
+                "creation_time": 1695727841.3354845,
                 "auxillary_file_paths": [
-                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-3999958.pt"
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3999978.pt"
                 ]
             },
             {
-                "steps": 4499965,
-                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4499965.onnx",
-                "reward": 5.177655162482426,
-                "creation_time": 1695625613.7853603,
+                "steps": 4499924,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4499924.onnx",
+                "reward": 5.178888903723823,
+                "creation_time": 1695729029.8926258,
                 "auxillary_file_paths": [
-                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4499965.pt"
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4499924.pt"
                 ]
             },
             {
-                "steps": 4999932,
-                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4999932.onnx",
-                "reward": 5.192333300908406,
-                "creation_time": 1695626664.6445234,
+                "steps": 4999982,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4999982.onnx",
+                "reward": 5.147857129573822,
+                "creation_time": 1695730224.1864018,
                 "auxillary_file_paths": [
-                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-4999932.pt"
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4999982.pt"
                 ]
             },
             {
-                "steps": 5000789,
-                "file_path": "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.onnx",
-                "reward": 5.073399925231934,
-                "creation_time": 1695626664.841551,
+                "steps": 5000036,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.onnx",
+                "reward": 5.197599991162618,
+                "creation_time": 1695730224.2766705,
                 "auxillary_file_paths": [
-                    "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.pt"
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5000789,
-            "file_path": "results\\Collab_IL_Cu_01\\CollabILCu.onnx",
-            "reward": 5.073399925231934,
-            "creation_time": 1695626664.841551,
+            "steps": 5000036,
+            "file_path": "results\\Collab_IL_Cu_01\\CollabRL.onnx",
+            "reward": 5.197599991162618,
+            "creation_time": 1695730224.2766705,
             "auxillary_file_paths": [
-                "results\\Collab_IL_Cu_01\\CollabILCu\\CollabILCu-5000789.pt"
+                "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.pt"
             ]
         }
     },

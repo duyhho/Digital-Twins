@@ -2,58 +2,58 @@
     "CollabRLOnly": {
         "checkpoints": [
             {
-                "steps": 3499993,
-                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499993.onnx",
-                "reward": 4.957555628485149,
-                "creation_time": 1695637138.2156763,
+                "steps": 3499893,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499893.onnx",
+                "reward": 4.849999904632568,
+                "creation_time": 1695713114.6108587,
                 "auxillary_file_paths": [
-                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499993.pt"
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3499893.pt"
                 ]
             },
             {
-                "steps": 3999974,
-                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999974.onnx",
-                "reward": 4.882000088691711,
-                "creation_time": 1695638257.2057662,
+                "steps": 3999929,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999929.onnx",
+                "reward": 5.478666747609775,
+                "creation_time": 1695714279.3850453,
                 "auxillary_file_paths": [
-                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999974.pt"
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-3999929.pt"
                 ]
             },
             {
-                "steps": 4499979,
-                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499979.onnx",
-                "reward": 4.53833332657814,
-                "creation_time": 1695639377.2146335,
+                "steps": 4499925,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499925.onnx",
+                "reward": 5.844800090789795,
+                "creation_time": 1695715446.6363275,
                 "auxillary_file_paths": [
-                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499979.pt"
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4499925.pt"
                 ]
             },
             {
-                "steps": 4999976,
-                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999976.onnx",
-                "reward": 4.4858461526724005,
-                "creation_time": 1695640497.3754685,
+                "steps": 4999901,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999901.onnx",
+                "reward": 5.518666545550029,
+                "creation_time": 1695716619.2206328,
                 "auxillary_file_paths": [
-                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999976.pt"
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-4999901.pt"
                 ]
             },
             {
-                "steps": 5000050,
-                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.onnx",
-                "reward": 4.583571434020996,
-                "creation_time": 1695640497.4646955,
+                "steps": 5000013,
+                "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000013.onnx",
+                "reward": 5.2699998787471225,
+                "creation_time": 1695716619.3323693,
                 "auxillary_file_paths": [
-                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.pt"
+                    "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000013.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5000050,
+            "steps": 5000013,
             "file_path": "results\\Collab_RL_Only_01\\CollabRLOnly.onnx",
-            "reward": 4.583571434020996,
-            "creation_time": 1695640497.4646955,
+            "reward": 5.2699998787471225,
+            "creation_time": 1695716619.3323693,
             "auxillary_file_paths": [
-                "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000050.pt"
+                "results\\Collab_RL_Only_01\\CollabRLOnly\\CollabRLOnly-5000013.pt"
             ]
         }
     },

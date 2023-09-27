@@ -1,0 +1,65 @@
+{
+    "CollabIL30": {
+        "checkpoints": [
+            {
+                "steps": 3499994,
+                "file_path": "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-3499994.onnx",
+                "reward": 3.8980000019073486,
+                "creation_time": 1695783153.1474123,
+                "auxillary_file_paths": [
+                    "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-3499994.pt"
+                ]
+            },
+            {
+                "steps": 3999998,
+                "file_path": "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-3999998.onnx",
+                "reward": 4.846909058364955,
+                "creation_time": 1695784323.064997,
+                "auxillary_file_paths": [
+                    "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-3999998.pt"
+                ]
+            },
+            {
+                "steps": 4499932,
+                "file_path": "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-4499932.onnx",
+                "reward": 5.5159999336067,
+                "creation_time": 1695785500.2289908,
+                "auxillary_file_paths": [
+                    "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-4499932.pt"
+                ]
+            },
+            {
+                "steps": 4999998,
+                "file_path": "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-4999998.onnx",
+                "reward": 5.4419999599456785,
+                "creation_time": 1695786687.216629,
+                "auxillary_file_paths": [
+                    "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-4999998.pt"
+                ]
+            },
+            {
+                "steps": 5000228,
+                "file_path": "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-5000228.onnx",
+                "reward": 5.195333321889241,
+                "creation_time": 1695786687.330068,
+                "auxillary_file_paths": [
+                    "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-5000228.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000228,
+            "file_path": "results\\CollabIL_30_01\\CollabIL30.onnx",
+            "reward": 5.195333321889241,
+            "creation_time": 1695786687.330068,
+            "auxillary_file_paths": [
+                "results\\CollabIL_30_01\\CollabIL30\\CollabIL30-5000228.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

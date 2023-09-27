@@ -8,9 +8,11 @@ public class CollaborativeAgentScript : MonoBehaviour
     public bool isAwake = false;
     private Renderer agentRenderer; // Renderer to change the material
     protected HallwaySettings m_HallwaySettings;  // Changed to protected
+
     public Vector3 sleepPosition;
     void Start()
     {
+        sleepPosition = transform.position;
         m_HallwaySettings = FindObjectOfType<HallwaySettings>();
         agentRenderer = gameObject.GetComponentInChildren<Renderer>();
         agentRenderer.material = inactiveMaterial; // Set the initial material to inactive

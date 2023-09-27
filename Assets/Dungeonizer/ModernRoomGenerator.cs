@@ -710,7 +710,7 @@ public class ModernRoomGenerator : MonoBehaviour
 
     public void Generate()
     {
-
+        parentOffsetHeight = transform.parent.transform.position.y;
         roomManager = GetComponent<RoomManager>();
         gridManager = GetComponent<GridManager>();
 
