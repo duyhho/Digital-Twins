@@ -1,0 +1,65 @@
+{
+    "CollabRL": {
+        "checkpoints": [
+            {
+                "steps": 3499963,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3499963.onnx",
+                "reward": 5.33333329608043,
+                "creation_time": 1695726657.2511299,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3499963.pt"
+                ]
+            },
+            {
+                "steps": 3999978,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3999978.onnx",
+                "reward": 4.51200008392334,
+                "creation_time": 1695727841.3354845,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-3999978.pt"
+                ]
+            },
+            {
+                "steps": 4499924,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4499924.onnx",
+                "reward": 5.178888903723823,
+                "creation_time": 1695729029.8926258,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4499924.pt"
+                ]
+            },
+            {
+                "steps": 4999982,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4999982.onnx",
+                "reward": 5.147857129573822,
+                "creation_time": 1695730224.1864018,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-4999982.pt"
+                ]
+            },
+            {
+                "steps": 5000036,
+                "file_path": "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.onnx",
+                "reward": 5.197599991162618,
+                "creation_time": 1695730224.2766705,
+                "auxillary_file_paths": [
+                    "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000036,
+            "file_path": "results\\Collab_IL_Cu_01\\CollabRL.onnx",
+            "reward": 5.197599991162618,
+            "creation_time": 1695730224.2766705,
+            "auxillary_file_paths": [
+                "results\\Collab_IL_Cu_01\\CollabRL\\CollabRL-5000036.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
