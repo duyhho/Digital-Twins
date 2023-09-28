@@ -1,0 +1,53 @@
+{
+    "room_count": {
+        "lesson_num": 4
+    },
+    "should_randomize": {
+        "lesson_num": 8
+    },
+    "CollabRLCu_Curriculum": {
+        "checkpoints": [
+            {
+                "steps": 499980,
+                "file_path": "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-499980.onnx",
+                "reward": 2.893999973932902,
+                "creation_time": 1695928059.1302211,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-499980.pt"
+                ]
+            },
+            {
+                "steps": 999948,
+                "file_path": "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-999948.onnx",
+                "reward": 4.178199970722199,
+                "creation_time": 1695929299.7119951,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-999948.pt"
+                ]
+            },
+            {
+                "steps": 1000068,
+                "file_path": "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000068.onnx",
+                "reward": 4.140363595702431,
+                "creation_time": 1695929299.815237,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000068.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000068,
+            "file_path": "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum.onnx",
+            "reward": 4.140363595702431,
+            "creation_time": 1695929299.815237,
+            "auxillary_file_paths": [
+                "results\\RL_Cu_Curriculum_1M_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000068.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

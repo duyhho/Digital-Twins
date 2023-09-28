@@ -1,0 +1,53 @@
+{
+    "room_count": {
+        "lesson_num": 1
+    },
+    "should_randomize": {
+        "lesson_num": 3
+    },
+    "CollabRLCu_Curriculum": {
+        "checkpoints": [
+            {
+                "steps": 499940,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-499940.onnx",
+                "reward": 4.104249954223633,
+                "creation_time": 1695856638.023701,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-499940.pt"
+                ]
+            },
+            {
+                "steps": 999993,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-999993.onnx",
+                "reward": 4.68485718539783,
+                "creation_time": 1695858060.7766733,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-999993.pt"
+                ]
+            },
+            {
+                "steps": 1000014,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000014.onnx",
+                "reward": 4.812250040471554,
+                "creation_time": 1695858060.8923633,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000014.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000014,
+            "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum.onnx",
+            "reward": 4.812250040471554,
+            "creation_time": 1695858060.8923633,
+            "auxillary_file_paths": [
+                "results\\RL_Cu_Curriculum_01\\CollabRLCu_Curriculum\\CollabRLCu_Curriculum-1000014.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

@@ -15,6 +15,7 @@ public class CollabFireAgent : DungeonAgentFire
     public override void Initialize()
     {
         base.Initialize();
+        m_ResetParams = Academy.Instance.EnvironmentParameters;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -173,6 +174,7 @@ public class CollabFireAgent : DungeonAgentFire
 
 
         }
+
         if (isEvaluation)
         {
             bool allAttemptsExceeded = true;
@@ -224,8 +226,34 @@ public class CollabFireAgent : DungeonAgentFire
         CollaborativeAgentScript[] allCollabAgents = area.GetComponentsInChildren<CollaborativeAgentScript>();
         if (!isEvaluation)
         {
+            if (shouldRandomize)
+            {
+                float curriculumRoomCount = m_ResetParams.GetWithDefault("room_count", -1);
+                Debug.Log("curriculumRoomCount: " + curriculumRoomCount);
+                if (curriculumRoomCount != -1)
+                {
+                    if (modernRoomGenerator.maximumRoomCount != curriculumRoomCount)
+                    {
+                        modernRoomGenerator.maximumRoomCount = (int)curriculumRoomCount;
+                        modernRoomGenerator.ClearOldDungeon();
+                        modernRoomGenerator.Generate();
+                    }
+                }
 
-            // gridManager.ResetGrid();
+                float curriculumShouldRandomize = m_ResetParams.GetWithDefault("should_randomize", -1);
+                Debug.Log("shouldRandomize: " + shouldRandomize);
+                if (shouldRandomize == true && curriculumShouldRandomize != -1)
+                {
+                    shouldRandomize = curriculumShouldRandomize == 1;
+                }
+
+                Debug.Log($"Current Curriculum - Room Count: {curriculumRoomCount}, Should Randomize: {shouldRandomize}");
+
+            }
+            else
+            {
+                Debug.Log("Failed or just started: Retrying...");
+            }
             if (shouldRandomize)
             {
                 modernRoomGenerator.ClearOldDungeon();
@@ -238,7 +266,7 @@ public class CollabFireAgent : DungeonAgentFire
                     cAgent.Reset();
                 }
                 Vector3 randomFirePosition = roomManager.GetRandomGoalPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
-                randomFirePosition.y = parentOffsetHeight;
+                randomFirePosition.y = parentOffsetHeight + 0.1f;
 
                 if (symbolOGoal)
                 {
