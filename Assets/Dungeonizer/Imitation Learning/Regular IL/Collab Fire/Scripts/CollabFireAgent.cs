@@ -6,6 +6,7 @@ using Unity.MLAgents.Sensors;
 using UnityEditor;
 using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
+using System;
 public class CollabFireAgent : DungeonAgentFire
 {
     public FireLifeScript fireLifeScript;
@@ -229,12 +230,14 @@ public class CollabFireAgent : DungeonAgentFire
             if (shouldRandomize)
             {
                 float curriculumRoomCount = m_ResetParams.GetWithDefault("room_count", -1);
+                int roundedCurriculumRoomCount = (int)Math.Round(curriculumRoomCount);
+
                 Debug.Log("curriculumRoomCount: " + curriculumRoomCount);
                 if (curriculumRoomCount != -1)
                 {
                     if (modernRoomGenerator.maximumRoomCount != curriculumRoomCount)
                     {
-                        modernRoomGenerator.maximumRoomCount = (int)curriculumRoomCount;
+                        modernRoomGenerator.maximumRoomCount = (int)roundedCurriculumRoomCount;
                         modernRoomGenerator.ClearOldDungeon();
                         modernRoomGenerator.Generate();
                     }
@@ -247,7 +250,7 @@ public class CollabFireAgent : DungeonAgentFire
                     shouldRandomize = curriculumShouldRandomize == 1;
                 }
 
-                Debug.Log($"Current Curriculum - Room Count: {curriculumRoomCount}, Should Randomize: {shouldRandomize}");
+                Debug.Log($"Current Curriculum - Room Count: {roundedCurriculumRoomCount}, Should Randomize: {shouldRandomize}");
 
             }
             else

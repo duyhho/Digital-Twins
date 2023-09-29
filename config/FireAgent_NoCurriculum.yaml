@@ -37,21 +37,9 @@ environment_parameters:
           sampler_parameters:
             min_value: 2
             max_value: 5
-        completion_criteria:
-          measure: progress
-          behavior: CollabRLCu
-          signal_smoothing: true
-          threshold: 1.0
-          min_lesson_length: 100
-     
   should_randomize:
     curriculum:
       - name: DynamicRoomsAlways
         value: 1
-        completion_criteria:
-          measure: progress
-          behavior: CollabRLCu
-          threshold: 1.0
-          signal_smoothing: true
-          min_lesson_length: 100
+        
       

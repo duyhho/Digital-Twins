@@ -1,0 +1,71 @@
+{
+    "room_count": {
+        "lesson_num": 1
+    },
+    "should_randomize": {
+        "lesson_num": 1
+    },
+    "CollabRLCu": {
+        "checkpoints": [
+            {
+                "steps": 3499963,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-3499963.onnx",
+                "reward": 5.3347500041127205,
+                "creation_time": 1695872934.8576407,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-3499963.pt"
+                ]
+            },
+            {
+                "steps": 3999929,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-3999929.onnx",
+                "reward": 4.8819999779973715,
+                "creation_time": 1695874485.5206244,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-3999929.pt"
+                ]
+            },
+            {
+                "steps": 4499962,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-4499962.onnx",
+                "reward": 4.47680002450943,
+                "creation_time": 1695876056.7887592,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-4499962.pt"
+                ]
+            },
+            {
+                "steps": 4999958,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-4999958.onnx",
+                "reward": 5.047599947452545,
+                "creation_time": 1695877644.9538975,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-4999958.pt"
+                ]
+            },
+            {
+                "steps": 5000074,
+                "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-5000074.onnx",
+                "reward": 5.113272677768361,
+                "creation_time": 1695877645.055658,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-5000074.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000074,
+            "file_path": "results\\RL_Cu_Curriculum_01\\CollabRLCu.onnx",
+            "reward": 5.113272677768361,
+            "creation_time": 1695877645.055658,
+            "auxillary_file_paths": [
+                "results\\RL_Cu_Curriculum_01\\CollabRLCu\\CollabRLCu-5000074.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
