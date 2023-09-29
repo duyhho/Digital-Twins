@@ -80,7 +80,7 @@ environment_parameters:
     - value:
         sampler_type: uniform
         sampler_parameters:
-          seed: 7738
+          seed: 8828
           min_value: 2.0
           max_value: 5.0
       name: RandomRoomsDefault
@@ -90,7 +90,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7739
+          seed: 8829
           value: 1
       name: DynamicRoomsAlways
       completion_criteria: null
