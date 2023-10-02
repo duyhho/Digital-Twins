@@ -39,6 +39,7 @@ TagManager:
   - food
   - badFood
   - frozenAgent
+  - obstacle
   layers:
   - Default
   - TransparentFX
