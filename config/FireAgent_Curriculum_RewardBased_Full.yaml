@@ -29,7 +29,7 @@ behaviors:
     summary_freq: 30000
     threaded: true
 environment_parameters:
-    room_count:
+  room_count:
     curriculum:
       - name: TwoRoomsStatic
         value: 2
