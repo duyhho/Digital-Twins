@@ -214,10 +214,7 @@ public class CollabFireAgent : DungeonAgentFire
     }
     public override void ResetEnvironment()
     {
-        // base.ResetEnvironment();
-        // modernRoomGenerator.ClearOldDungeon();
-        // modernRoomGenerator.Generate();
-        // gridManager.ResetGrid();
+        bool randomizeCAgents = false;
         if (symbolOGoal)
         {
             fireLifeScript = symbolOGoal.GetComponent<FireLifeScript>();
@@ -225,10 +222,11 @@ public class CollabFireAgent : DungeonAgentFire
             // symbolOGoal.transform.position = randomFirePosition;
         }
         CollaborativeAgentScript[] allCollabAgents = area.GetComponentsInChildren<CollaborativeAgentScript>();
-        if (!isEvaluation)
+        if (!isEvaluation) //isTraining
         {
             if (shouldRandomize)
             {
+                randomizeCAgents = true;
                 float curriculumRoomCount = m_ResetParams.GetWithDefault("room_count", -1);
                 int roundedCurriculumRoomCount = (int)Math.Round(curriculumRoomCount);
 
@@ -261,13 +259,7 @@ public class CollabFireAgent : DungeonAgentFire
             {
                 modernRoomGenerator.ClearOldDungeon();
                 modernRoomGenerator.Generate();
-                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
-                {
-                    Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
-                    // Debug.Log("randomPosition: " + randomPosition);
-                    cAgent.gameObject.transform.position = randomPosition;
-                    cAgent.Reset();
-                }
+
                 Vector3 randomFirePosition = roomManager.GetRandomGoalPosition() + new Vector3(0f, parentOffsetHeight, 0f); ;
                 randomFirePosition.y = parentOffsetHeight + 0.1f;
 
@@ -278,6 +270,17 @@ public class CollabFireAgent : DungeonAgentFire
 
                     symbolOGoal.transform.position = randomFirePosition;
                     // Debug.Log("randomFirePosition" + randomFirePosition);
+                }
+            }
+            if (randomizeCAgents)
+            {
+                foreach (CollaborativeAgentScript cAgent in allCollabAgents)
+                {
+                    Vector3 randomPosition = roomManager.GetRandomObjectPosition();
+                    randomPosition.y = parentOffsetHeight + 0.1f;
+                    // Debug.Log("randomPosition: " + randomPosition);
+                    cAgent.gameObject.transform.position = randomPosition;
+                    cAgent.Reset();
                 }
             }
             else
