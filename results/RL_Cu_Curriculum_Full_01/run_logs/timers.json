@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1696300545",
+        "python_version": "3.9.18 (main, Sep 11 2023, 14:09:26) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\dhh3hb\\Anaconda3\\envs\\ml-agents-230\\Scripts\\mlagents-learn config/FireAgent_Curriculum_RewardBased_Full.yaml --run-id RL_Cu_Curriculum_Full_01 --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1696300571"
+    },
+    "total": 25.866491800000002,
+    "count": 1,
+    "self": 0.021554300000001803,
+    "children": {
+        "run_training.setup": {
+            "total": 0.10903039999999997,
+            "count": 1,
+            "self": 0.10903039999999997
+        },
+        "TrainerController.start_learning": {
+            "total": 25.735907100000002,
+            "count": 1,
+            "self": 0.00016520000000141977,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 25.735716,
+                    "count": 1,
+                    "self": 25.735716
+                },
+                "TrainerController._save_models": {
+                    "total": 2.590000000068926e-05,
+                    "count": 1,
+                    "self": 2.590000000068926e-05
+                }
+            }
+        }
+    }
+}

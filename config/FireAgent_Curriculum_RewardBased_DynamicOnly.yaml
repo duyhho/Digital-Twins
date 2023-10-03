@@ -1,5 +1,5 @@
 behaviors:
-  CollabRLCu_Curriculum_Reward:
+  CollabRLCu_Curriculum_Reward_DynamicOnly:
     trainer_type: ppo
     hyperparameters:
       batch_size: 64
@@ -24,7 +24,7 @@ behaviors:
         strength: 0.02
         learning_rate: 0.0003
     keep_checkpoints: 5
-    max_steps: 3000000
+    max_steps: 5000000
     time_horizon: 128
     summary_freq: 30000
     threaded: true
@@ -35,7 +35,7 @@ environment_parameters:
         value: 2
         completion_criteria:
           measure: reward
-          behavior: CollabRLCu_Curriculum_Reward
+          behavior: CollabRLCu_Curriculum_Reward_DynamicOnly
           signal_smoothing: true
           threshold: 5
           min_lesson_length: 100
@@ -43,21 +43,21 @@ environment_parameters:
         value: 3
         completion_criteria:
           measure: reward
-          behavior: CollabRLCu_Curriculum_Reward
+          behavior: CollabRLCu_Curriculum_Reward_DynamicOnly
           threshold: 5
           min_lesson_length: 100
       - name: FourRooms
         value: 4
         completion_criteria:
           measure: reward
-          behavior: CollabRLCu_Curriculum_Reward
+          behavior: CollabRLCu_Curriculum_Reward_DynamicOnly
           threshold: 4.8
           min_lesson_length: 100
       - name: FiveRooms
         value: 5
         completion_criteria:
           measure: reward
-          behavior: CollabRLCu_Curriculum_Reward
+          behavior: CollabRLCu_Curriculum_Reward_DynamicOnly
           threshold: 4.7
           min_lesson_length: 100
       - name: RandomRooms
