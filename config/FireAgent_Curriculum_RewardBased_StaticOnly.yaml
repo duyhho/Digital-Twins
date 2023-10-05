@@ -60,12 +60,6 @@ environment_parameters:
           behavior: CollabRLCu_Curriculum_Reward_StaticOnly
           threshold: 4.7
           min_lesson_length: 100
-      - name: RandomRooms
-        value:
-          sampler_type: uniform
-          sampler_parameters:
-            min_value: 2
-            max_value: 5
   should_randomize:
     curriculum:
       - name: StaticAlways
