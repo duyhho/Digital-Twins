@@ -37,35 +37,24 @@ environment_parameters:
           measure: progress
           behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
           signal_smoothing: true
-          threshold: 0.1
+          threshold: 0.2
           min_lesson_length: 100
       - name: ThreeRooms
         value: 3
         completion_criteria:
           measure: progress
           behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-          threshold: 0.25
+          threshold: 0.4
           min_lesson_length: 100
       - name: FourRooms
         value: 4
         completion_criteria:
           measure: progress
           behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-          threshold: 0.5
+          threshold: 0.7
           min_lesson_length: 100
       - name: FiveRooms
         value: 5
-        completion_criteria:
-          measure: progress
-          behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-          threshold: 0.8
-          min_lesson_length: 100
-      - name: RandomRooms
-        value:
-          sampler_type: uniform
-          sampler_parameters:
-            min_value: 2
-            max_value: 5
   should_randomize:
     curriculum:
       - name: StaticRoomAlways
