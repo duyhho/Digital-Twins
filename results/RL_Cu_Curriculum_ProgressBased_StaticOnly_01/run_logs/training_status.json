@@ -67,5 +67,36 @@
         "stats_format_version": "0.3.0",
         "mlagents_version": "0.30.0",
         "torch_version": "2.0.1"
+    },
+    "CollabRLCu_NoLearning": {
+        "checkpoints": [
+            {
+                "steps": 5499920,
+                "file_path": "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499920.onnx",
+                "reward": 4.949555615584056,
+                "creation_time": 1696494164.550965,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499920.pt"
+                ]
+            },
+            {
+                "steps": 5500008,
+                "file_path": "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500008.onnx",
+                "reward": 4.637200051546097,
+                "creation_time": 1696494164.6405323,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500008.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5500008,
+            "file_path": "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning.onnx",
+            "reward": 4.637200051546097,
+            "creation_time": 1696494164.6405323,
+            "auxillary_file_paths": [
+                "results\\RL_Cu_Curriculum_ProgressBased_StaticOnly_01\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500008.pt"
+            ]
+        }
     }
 }

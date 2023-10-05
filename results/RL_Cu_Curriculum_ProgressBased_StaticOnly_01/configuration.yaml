@@ -1,11 +1,11 @@
 default_settings: null
 behaviors:
-  CollabRLCu_Curriculum_ProgressBased_StaticOnly:
+  CollabRLCu_NoLearning:
     trainer_type: ppo
     hyperparameters:
       batch_size: 64
       buffer_size: 1024
-      learning_rate: 0.0003
+      learning_rate: 1.0e-09
       beta: 0.01
       epsilon: 0.2
       lambd: 0.95
@@ -34,23 +34,10 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
-      curiosity:
-        gamma: 0.99
-        strength: 0.02
-        network_settings:
-          normalize: false
-          hidden_units: 128
-          num_layers: 2
-          vis_encode_type: simple
-          memory: null
-          goal_conditioning_type: hyper
-          deterministic: false
-        learning_rate: 0.0003
-        encoding_size: null
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 5000000
+    max_steps: 5500000
     time_horizon: 128
     summary_freq: 30000
     threaded: true
@@ -74,70 +61,13 @@ engine_settings:
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
-environment_parameters:
-  room_count:
-    curriculum:
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 9308
-          value: 2
-      name: TwoRooms
-      completion_criteria:
-        behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-        measure: progress
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 0.2
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 9309
-          value: 3
-      name: ThreeRooms
-      completion_criteria:
-        behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-        measure: progress
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 0.4
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 9310
-          value: 4
-      name: FourRooms
-      completion_criteria:
-        behavior: CollabRLCu_Curriculum_ProgressBased_StaticOnly
-        measure: progress
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 0.7
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 9311
-          value: 5
-      name: FiveRooms
-      completion_criteria: null
-  should_randomize:
-    curriculum:
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 9312
-          value: 0
-      name: StaticRoomAlways
-      completion_criteria: null
+environment_parameters: null
 checkpoint_settings:
   run_id: RL_Cu_Curriculum_ProgressBased_StaticOnly_01
   initialize_from: null
   load_model: false
-  resume: false
-  force: true
+  resume: true
+  force: false
   train_model: false
   inference: false
   results_dir: results
