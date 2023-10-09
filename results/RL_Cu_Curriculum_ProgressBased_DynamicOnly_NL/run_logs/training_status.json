@@ -87,15 +87,33 @@
                 "auxillary_file_paths": [
                     "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500271.pt"
                 ]
+            },
+            {
+                "steps": 5499983,
+                "file_path": "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499983.onnx",
+                "reward": 4.477333386739095,
+                "creation_time": 1696741249.1267986,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499983.pt"
+                ]
+            },
+            {
+                "steps": 5501324,
+                "file_path": "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5501324.onnx",
+                "reward": 4.5163529375020195,
+                "creation_time": 1696741249.3482375,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5501324.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5500271,
+            "steps": 5501324,
             "file_path": "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning.onnx",
-            "reward": 3.884000062942505,
-            "creation_time": 1696717608.2777905,
+            "reward": 4.5163529375020195,
+            "creation_time": 1696741249.3482375,
             "auxillary_file_paths": [
-                "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500271.pt"
+                "results\\RL_Cu_Curriculum_ProgressBased_DynamicOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5501324.pt"
             ]
         }
     }

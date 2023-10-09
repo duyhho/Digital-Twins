@@ -87,15 +87,33 @@
                 "auxillary_file_paths": [
                     "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500204.pt"
                 ]
+            },
+            {
+                "steps": 5499991,
+                "file_path": "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499991.onnx",
+                "reward": 5.206999930739403,
+                "creation_time": 1696744001.9259467,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5499991.pt"
+                ]
+            },
+            {
+                "steps": 5500676,
+                "file_path": "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500676.onnx",
+                "reward": 5.453764670035419,
+                "creation_time": 1696744002.083579,
+                "auxillary_file_paths": [
+                    "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500676.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5500204,
+            "steps": 5500676,
             "file_path": "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning.onnx",
-            "reward": 5.348999917507172,
-            "creation_time": 1696716306.2592576,
+            "reward": 5.453764670035419,
+            "creation_time": 1696744002.083579,
             "auxillary_file_paths": [
-                "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500204.pt"
+                "results\\RL_Cu_Curriculum_Reward_StaticOnly_NL\\CollabRLCu_NoLearning\\CollabRLCu_NoLearning-5500676.pt"
             ]
         }
     }

@@ -19,6 +19,10 @@ behaviors:
       extrinsic:
         gamma: 0.99
         strength: 1
+      curiosity:
+        gamma: 0.99
+        strength: 0.02
+        learning_rate: 0.00000001
     keep_checkpoints: 5
     max_steps: 5500000
     time_horizon: 128

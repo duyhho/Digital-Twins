@@ -34,6 +34,19 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
+      curiosity:
+        gamma: 0.99
+        strength: 0.02
+        network_settings:
+          normalize: false
+          hidden_units: 128
+          num_layers: 2
+          vis_encode_type: simple
+          memory: null
+          goal_conditioning_type: hyper
+          deterministic: false
+        learning_rate: 1.0e-08
+        encoding_size: null
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -63,7 +76,7 @@ engine_settings:
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: RL_Cu_Curriculum_ProgressBased_StaticOnly_01
+  run_id: RL_Cu_Curriculum_ProgressBased_StaticOnly_NL
   initialize_from: null
   load_model: false
   resume: true
