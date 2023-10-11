@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.AI;
 using Unity.MLAgents;
+using System.IO;
+using Newtonsoft.Json;
 
 // public class Room
 // {
@@ -164,6 +166,24 @@ public class ModernRoomGenerator : MonoBehaviour
     [Tooltip("Enable Door Generation")]
     public DoorGenerationOption generateDoor = DoorGenerationOption.AllDoors;
 
+    public class TestJson
+    {
+        public int LayoutId;
+        public int x = 0;
+        public int y = 0;
+        public int w = 0;
+        public int h = 0;
+        public Room connectedTo = null;
+        public int branch = 0;
+        public string relative_positioning = "x";
+        public bool dead_end = false;
+        public int room_id = 0;
+
+        public int room_height = 0;
+
+
+    }
+
     class Dungeon
     {
         public static int map_size;
@@ -172,6 +192,12 @@ public class ModernRoomGenerator : MonoBehaviour
 
 
         public static List<MapTile> map;
+
+        string json;
+
+        public static TestJson testJsonObj = new TestJson();
+
+        public static List<TestJson> testJosnList = new List<TestJson>();
 
         public static List<Room> rooms = new List<Room>();
         public static List<Corridor> corridors = new List<Corridor>();
@@ -225,6 +251,9 @@ public class ModernRoomGenerator : MonoBehaviour
             string direction = "set";
             string oldDirection = "set";
             Room lastRoom;
+
+
+
 
 
             for (var i = 0; i < room_count; i++)
@@ -346,8 +375,32 @@ public class ModernRoomGenerator : MonoBehaviour
                     oldDirection = direction;
                     direction = "set";
                 }
-            }
 
+                testJsonObj.x = room.x;
+                testJsonObj.y = room.y;
+
+                testJsonObj.w = room.w;
+                testJsonObj.h = room.h;
+
+                testJsonObj.connectedTo = room.connectedTo;
+
+                testJsonObj.branch = room.branch;
+                testJsonObj.relative_positioning = room.relative_positioning;
+
+                testJsonObj.dead_end = room.dead_end;
+                testJsonObj.room_id = room.room_id;
+                testJsonObj.room_height = room.room_height;
+                testJosnList.Add(testJsonObj);
+
+                
+                
+                
+            }
+            json = JsonUtility.ToJson(testJsonObj, true);
+
+            File.WriteAllText(Application.dataPath + "/JsonDataFile.json", json);
+            
+            Debug.Log(testJosnList.Count);
             //room making
             for (int i = 0; i < rooms.Count; i++)
             {
