@@ -396,11 +396,18 @@ public class ModernRoomGenerator : MonoBehaviour
                 
                 
             }
-            json = JsonUtility.ToJson(testJsonObj, true);
+            //json = JsonUtility.ToJson(testJosnList, true);
+            json = JsonConvert.SerializeObject(testJosnList, Formatting.Indented);
 
             File.WriteAllText(Application.dataPath + "/JsonDataFile.json", json);
             
-            Debug.Log(testJosnList.Count);
+            Debug.Log("Debug list of JSON: " + testJosnList.ToArray());
+
+            // for (int i = 0; i < testJosnList.Count; i++) {
+            //     Debug.Log(testJosnList[i].x);
+            // }
+
+
             //room making
             for (int i = 0; i < rooms.Count; i++)
             {
