@@ -1,0 +1,5 @@
+1) Copy Template from Combined_Indistribution
+2) Copy checkpoint.pt (Copy) and rename to checkpoint.pt
+3) Delete extra >5M steps checkpoints.
+3.5) remember to delete the old events.out.tfevents (that's in november).
+4) mlagents-learn config/FireAgent_NoLearning.yaml --run-id RL_Cu_Curriculum_Reward_StaticOnly_NL --resume

@@ -127,6 +127,8 @@ public class ModernRoomGenerator : MonoBehaviour
     public int maximumRoomCount = 10;
     [Header("Room Count Randomization")]
     public bool randomizeRoomCount = false;
+    public int minRandomRooms = 2;
+
     public int maxRandomRooms = -1;
     [Tooltip("Min gap between rooms. Also affects corridor lengths ")]
     public int minimumRoomMargin = 0;
@@ -700,7 +702,7 @@ public class ModernRoomGenerator : MonoBehaviour
         }
         if (randomizeRoomCount)
         {
-            maximumRoomCount = Random.Range(2, maxRandomRooms + 1); // NOT INCLUDING MAX!
+            maximumRoomCount = Random.Range(minRandomRooms, maxRandomRooms + 1); // NOT INCLUDING MAX!
             Debug.Log("New Room Count: " + maximumRoomCount);
         }
         agent.m_Configuration = maximumRoomCount;
