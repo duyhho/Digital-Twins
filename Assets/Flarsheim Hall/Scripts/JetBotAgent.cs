@@ -12,11 +12,11 @@ public class JetBotAgent : Agent
     protected Rigidbody m_AgentRb;  // Changed to protected
     public bool useVectorObs = true;
     // protected EnvironmentParameters m_ResetParams;
-
-    // public FireLifeScript fireLifeScript;
-    // float parentOffsetHeight;
     // public int agentCount = 1;
     // public bool shouldRandomize = false;
+    public Transform leftWheel;
+    public Transform rightWheel;
+    public float wheelRotationSpeed = 500f; // Speed at which wheels rotate, adjust as needed
     public float moveSpeed = 2f; // You can adjust the speed as necessary
     public float turnSpeed = 200f; // Adjust turning speed as necessary
     public override void Initialize()
@@ -78,31 +78,6 @@ public class JetBotAgent : Agent
     {
 
     }
-    // public void MoveAgent(ActionSegment<int> act)
-    // {
-    //     var dirToGo = Vector3.zero;
-    //     var rotateDir = Vector3.zero;
-
-    //     var action = act[0];
-    //     switch (action)
-    //     {
-    //         case 1:
-    //             dirToGo = transform.forward * 1f;
-    //             break;
-    //         case 2:
-    //             dirToGo = transform.forward * -1f;
-    //             break;
-    //         case 3:
-    //             rotateDir = transform.up * 1f;
-    //             break;
-    //         case 4:
-    //             rotateDir = transform.up * -1f;
-    //             break;
-    //     }
-    //     transform.Rotate(rotateDir, Time.deltaTime * 200f);
-    //     m_AgentRb.AddForce(dirToGo * 2f, ForceMode.VelocityChange);
-    // }
-
     public void MoveAgent(ActionSegment<int> act)
     {
         var action = act[0];
@@ -128,47 +103,18 @@ public class JetBotAgent : Agent
         // Apply the movements
         m_AgentRb.MovePosition(m_AgentRb.position + moveVector);
         m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
+        RotateWheels(moveVector.magnitude);
     }
-    // public void MoveAgent(ActionSegment<int> act)
-    // {
-    //     var dirToGo = Vector3.zero;
-    //     var rotateDir = Vector3.zero;
+    // This function will rotate the wheels
+    private void RotateWheels(float movementSpeed)
+    {
+        // Calculate the rotation amount. If moveVector.magnitude is too small, you might want to use a fixed value for visual effect.
+        float rotationAmount = -wheelRotationSpeed * movementSpeed * Time.fixedDeltaTime;
 
-    //     var action = act[0];
-    //     switch (action)
-    //     {
-    //         case 1:
-    //             dirToGo = transform.forward;
-    //             break;
-    //         case 2:
-    //             dirToGo = -transform.forward;
-    //             break;
-    //         case 3:
-    //             rotateDir = Vector3.up;
-    //             break;
-    //         case 4:
-    //             rotateDir = -Vector3.up;
-    //             break;
-    //     }
-
-    //     // Set the velocity directly for movement
-    //     m_AgentRb.velocity = dirToGo * moveSpeed;
-
-    //     // Apply a rotation speed limit
-    //     if (m_AgentRb.angularVelocity.magnitude < turnSpeed)
-    //     {
-    //         m_AgentRb.AddTorque(rotateDir * turnSpeed);
-    //     }
-    // }
-
-    // // Call MoveAgent from FixedUpdate instead of OnActionReceived to align with the physics update
-    // void FixedUpdate()
-    // {
-    //     // Assuming OnActionReceived is setting some class variable for the action to take, which is then used here.
-    //     // You need to ensure that the actionBuffers are being stored appropriately for this FixedUpdate call.
-    //     MoveAgent(storedActionBuffers.DiscreteActions);
-    // }
-
+        // Rotate the wheels around their local X-axis
+        leftWheel.Rotate(rotationAmount, 0, 0);
+        rightWheel.Rotate(rotationAmount, 0, 0);
+    }
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActionsOut = actionsOut.DiscreteActions;
