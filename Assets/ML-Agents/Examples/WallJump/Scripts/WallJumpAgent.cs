@@ -137,7 +137,7 @@ public class WallJumpAgent : Agent
     }
 
     /// <summary>
-    /// Moves  a rigidbody towards a position smoothly.
+    /// Moves a rigidbody towards a position smoothly.
     /// </summary>
     /// <param name="targetPos">Target position.</param>
     /// <param name="rb">The rigidbody to be moved.</param>
