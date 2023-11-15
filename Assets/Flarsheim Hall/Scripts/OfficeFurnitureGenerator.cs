@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class OfficeFurnitureGenerator : MonoBehaviour
 {
-    // // Start is called before the first frame update
-    // void Start()
-    // {
 
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-
-    // }
-
-    public GameObject chair;
-    //public GameObject targetTable;
+    public List<GameObject> chairPrefabs;
+    GameObject chair;
     public Transform parentObject;
-
+    int randomIndex = 0;
     public void generate()
     {
+        // First, destroy all existing chairs
+        DestroyAllChairsWithTag();
+
+        /*Generate new chairs*/
         Debug.Log("Button is clicked");
-        //Debug.Log(targetTable.transform.localPosition);
-        //targetTable.Instantiate(chair, (0,0,0), targetTable.transform.rotation, this.targetTable.transform.localPosition);
-        //(Instantiate (chair, this.targetTable.transform.localPosition) as GameObject).transform.parent = chair.transform;
-        chair = Instantiate(chair, parentObject) as GameObject;
-        chair.transform.parent = transform;
-        //targetTable.transform.SetParent(chair.transform);
+
+        randomIndex = Random.Range(0, chairPrefabs.Count);
+        chair = Instantiate(chairPrefabs[randomIndex], parentObject) as GameObject;
+        chair.transform.parent = parentObject;
+        chair.transform.localPosition = new Vector3(0f, 0f, 0f);
+    }
+    private void DestroyAllChairsWithTag()
+    {
+        GameObject[] chairsToDestroy = GameObject.FindGameObjectsWithTag("chair");
+        foreach (GameObject chair in chairsToDestroy)
+        {
+            DestroyImmediate(chair);
+        }
     }
 }
