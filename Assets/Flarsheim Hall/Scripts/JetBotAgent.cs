@@ -7,6 +7,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
 using System;
+using UnityEngine.Networking;
+
 public class JetBotAgent : Agent
 {
     protected Rigidbody m_AgentRb;  // Changed to protected
@@ -19,6 +21,9 @@ public class JetBotAgent : Agent
     public float wheelRotationSpeed = 500f; // Speed at which wheels rotate, adjust as needed
     public float moveSpeed = 2f; // You can adjust the speed as necessary
     public float turnSpeed = 200f; // Adjust turning speed as necessary
+    private int lastAction = -1; // Initialize with a value that doesn't correspond to any valid action
+    public const string RobotBaseUrl = "http://192.168.0.248:8001";
+
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
@@ -76,11 +81,12 @@ public class JetBotAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-
+        lastAction = -1;
     }
     public void MoveAgent(ActionSegment<int> act)
     {
         var action = act[0];
+        Debug.Log("action: " + action);
         Vector3 moveVector = Vector3.zero;
         Quaternion rotateQuaternion = Quaternion.identity;
 
@@ -104,6 +110,37 @@ public class JetBotAgent : Agent
         m_AgentRb.MovePosition(m_AgentRb.position + moveVector);
         m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
         RotateWheels(moveVector.magnitude);
+
+        // Check if the current action is different from the last action
+        if (action != lastAction)
+        {
+            string command = "";
+
+            switch (action)
+            {
+                case 1:
+                    command = "forward";
+                    break;
+                case 2:
+                    command = "backward";
+                    break;
+                case 3:
+                    command = "right";
+                    break;
+                case 4:
+                    command = "left";
+                    break;
+                default:
+                    command = "stop";
+                    break;
+            }
+
+            // Send the command to the robot
+            StartCoroutine(SendCommandToRobot(command));
+
+            // Update the last action
+            lastAction = action;
+        }
     }
     // This function will rotate the wheels
     private void RotateWheels(float movementSpeed)
@@ -135,4 +172,25 @@ public class JetBotAgent : Agent
             discreteActionsOut[0] = 2;
         }
     }
+    private IEnumerator SendCommandToRobot(string command)
+    {
+        string url = command == "stop" ? $"{RobotBaseUrl}/stop" : $"{RobotBaseUrl}/move?command={command}";
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log(": Error: " + webRequest.error);
+            }
+            else
+            {
+                Debug.Log(": Received: " + webRequest.downloadHandler.text);
+            }
+        }
+    }
+
+
 }

@@ -9,6 +9,11 @@ public class OfficeFurnitureGenerator : MonoBehaviour
     GameObject chair;
     public Transform parentObject;
     int randomIndex = 0;
+    void Start()
+    {
+
+    }
+
     public void generate()
     {
         // First, destroy all existing chairs
