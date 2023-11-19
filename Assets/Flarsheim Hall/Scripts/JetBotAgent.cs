@@ -22,6 +22,7 @@ public class JetBotAgent : Agent
     public float moveSpeed = 2f; // You can adjust the speed as necessary
     public float turnSpeed = 200f; // Adjust turning speed as necessary
     private int lastAction = -1; // Initialize with a value that doesn't correspond to any valid action
+    public bool connectToFlaskAPI = false;
     public const string RobotBaseUrl = "http://192.168.0.248:8001";
 
     public override void Initialize()
@@ -136,7 +137,8 @@ public class JetBotAgent : Agent
             }
 
             // Send the command to the robot
-            StartCoroutine(SendCommandToRobot(command));
+            if (connectToFlaskAPI)
+                StartCoroutine(SendCommandToRobot(command));
 
             // Update the last action
             lastAction = action;
