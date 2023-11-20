@@ -1,0 +1,107 @@
+[
+  {
+    "LayoutId": 0,
+    "x": -15,
+    "y": -13,
+    "w": 13,
+    "h": 13,
+    "connectedTo": {
+      "x": 0,
+      "y": -13,
+      "w": 13,
+      "h": 11,
+      "connectedTo": {
+        "x": 0,
+        "y": 0,
+        "w": 13,
+        "h": 13,
+        "connectedTo": null,
+        "branch": 0,
+        "relative_positioning": "x",
+        "dead_end": false,
+        "room_id": 0,
+        "room_height": 0
+      },
+      "branch": 8,
+      "relative_positioning": "x",
+      "dead_end": false,
+      "room_id": 1,
+      "room_height": 3
+    },
+    "branch": 9,
+    "relative_positioning": "x",
+    "dead_end": false,
+    "room_id": 2,
+    "room_height": 3
+  },
+  {
+    "LayoutId": 0,
+    "x": -15,
+    "y": -13,
+    "w": 13,
+    "h": 13,
+    "connectedTo": {
+      "x": 0,
+      "y": -13,
+      "w": 13,
+      "h": 11,
+      "connectedTo": {
+        "x": 0,
+        "y": 0,
+        "w": 13,
+        "h": 13,
+        "connectedTo": null,
+        "branch": 0,
+        "relative_positioning": "x",
+        "dead_end": false,
+        "room_id": 0,
+        "room_height": 0
+      },
+      "branch": 8,
+      "relative_positioning": "x",
+      "dead_end": false,
+      "room_id": 1,
+      "room_height": 3
+    },
+    "branch": 9,
+    "relative_positioning": "x",
+    "dead_end": false,
+    "room_id": 2,
+    "room_height": 3
+  },
+  {
+    "LayoutId": 0,
+    "x": -15,
+    "y": -13,
+    "w": 13,
+    "h": 13,
+    "connectedTo": {
+      "x": 0,
+      "y": -13,
+      "w": 13,
+      "h": 11,
+      "connectedTo": {
+        "x": 0,
+        "y": 0,
+        "w": 13,
+        "h": 13,
+        "connectedTo": null,
+        "branch": 0,
+        "relative_positioning": "x",
+        "dead_end": false,
+        "room_id": 0,
+        "room_height": 0
+      },
+      "branch": 8,
+      "relative_positioning": "x",
+      "dead_end": false,
+      "room_id": 1,
+      "room_height": 3
+    },
+    "branch": 9,
+    "relative_positioning": "x",
+    "dead_end": false,
+    "room_id": 2,
+    "room_height": 3
+  }
+]
