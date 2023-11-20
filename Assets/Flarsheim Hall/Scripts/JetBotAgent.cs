@@ -13,23 +13,18 @@ public class JetBotAgent : Agent
 {
     protected Rigidbody m_AgentRb;  // Changed to protected
     public bool useVectorObs = true;
-    // protected EnvironmentParameters m_ResetParams;
-    // public int agentCount = 1;
-    // public bool shouldRandomize = false;
     public Transform leftWheel;
     public Transform rightWheel;
     public float wheelRotationSpeed = 500f; // Speed at which wheels rotate, adjust as needed
     public float moveSpeed = 2f; // You can adjust the speed as necessary
     public float turnSpeed = 200f; // Adjust turning speed as necessary
-    private int lastAction = -1; // Initialize with a value that doesn't correspond to any valid action
+    protected int lastAction = -1; // Initialize with a value that doesn't correspond to any valid action
     public bool connectToFlaskAPI = false;
     public const string RobotBaseUrl = "http://192.168.0.248:8001";
 
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
-
-        // m_ResetParams = Academy.Instance.EnvironmentParameters;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -58,36 +53,19 @@ public class JetBotAgent : Agent
         MoveAgent(actionBuffers.DiscreteActions);
     }
 
-    protected void OnCollisionEnter(Collision col)
-    {
-
-    }
-    protected void OnCollisionStay(Collision col)
-    {
-
-    }
     protected IEnumerator DelayedEndEpisode()
     {
         yield return new WaitForSeconds(0.001f); // Wait for .001 second
-    }
-
-    protected void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("fire"))
-        {
-            EndEpisode();
-        }
-
     }
 
     public override void OnEpisodeBegin()
     {
         lastAction = -1;
     }
-    public void MoveAgent(ActionSegment<int> act)
+    public virtual void MoveAgent(ActionSegment<int> act)
     {
         var action = act[0];
-        Debug.Log("action: " + action);
+        // Debug.Log("action: " + action);
         Vector3 moveVector = Vector3.zero;
         Quaternion rotateQuaternion = Quaternion.identity;
 
@@ -145,7 +123,7 @@ public class JetBotAgent : Agent
         }
     }
     // This function will rotate the wheels
-    private void RotateWheels(float movementSpeed)
+    protected virtual void RotateWheels(float movementSpeed)
     {
         // Calculate the rotation amount. If moveVector.magnitude is too small, you might want to use a fixed value for visual effect.
         float rotationAmount = -wheelRotationSpeed * movementSpeed * Time.fixedDeltaTime;
@@ -174,7 +152,7 @@ public class JetBotAgent : Agent
             discreteActionsOut[0] = 2;
         }
     }
-    private IEnumerator SendCommandToRobot(string command)
+    protected virtual IEnumerator SendCommandToRobot(string command)
     {
         string url = command == "stop" ? $"{RobotBaseUrl}/stop" : $"{RobotBaseUrl}/move?command={command}";
 

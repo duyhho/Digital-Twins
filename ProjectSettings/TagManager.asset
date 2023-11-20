@@ -41,6 +41,10 @@ TagManager:
   - frozenAgent
   - obstacle
   - chair
+  - table
+  - fridge
+  - door
+  - visited
   layers:
   - Default
   - TransparentFX

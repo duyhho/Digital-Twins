@@ -1,0 +1,29 @@
+{
+    "BasicNavigationJetbot": {
+        "checkpoints": [
+            {
+                "steps": 7168,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.onnx",
+                "reward": null,
+                "creation_time": 1700437451.6737094,
+                "auxillary_file_paths": [
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7168,
+            "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot.onnx",
+            "reward": null,
+            "creation_time": 1700437451.6737094,
+            "auxillary_file_paths": [
+                "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
