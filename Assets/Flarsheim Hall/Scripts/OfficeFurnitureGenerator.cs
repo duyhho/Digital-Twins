@@ -31,7 +31,7 @@ public class OfficeFurnitureGenerator : MonoBehaviour
     GameObject chair;
     public Transform parentObject;
     int randomIndex = 0;
-    public List<DataObject> dataObjectList = new List<DataObject>();
+    public List<DataObject> chairPositions = new List<DataObject>();
 
     Vector3 rotationVector;
     Quaternion rotationQuaternion;
@@ -64,7 +64,7 @@ public class OfficeFurnitureGenerator : MonoBehaviour
         //     chair.transform.localPosition = new Vector3(i * 1.5f, 0f, i * 1.5f);
         // }
 
-        foreach (DataObject dataObject in dataObjectList)
+        foreach (DataObject dataObject in chairPositions)
         {
             // Create a Vector3 representing the desired rotation (in degrees)
             rotationVector = new Vector3(0f, dataObject.ry, 0f);
