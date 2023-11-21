@@ -12,6 +12,7 @@ using UnityEngine.Networking;
 public class JetBotAgent : Agent
 {
     protected Rigidbody m_AgentRb;  // Changed to protected
+    public Vector3 centerOfMass;
     public bool useVectorObs = true;
     public Transform leftWheel;
     public Transform rightWheel;
@@ -25,6 +26,7 @@ public class JetBotAgent : Agent
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
+        m_AgentRb.centerOfMass = centerOfMass;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -66,30 +68,60 @@ public class JetBotAgent : Agent
     {
         var action = act[0];
         // Debug.Log("action: " + action);
-        Vector3 moveVector = Vector3.zero;
-        Quaternion rotateQuaternion = Quaternion.identity;
+        // Vector3 moveVector = Vector3.zero;
+        // Quaternion rotateQuaternion = Quaternion.identity;
 
+        // switch (action)
+        // {
+        //     case 1:
+        //         moveVector = transform.forward * moveSpeed * Time.fixedDeltaTime;
+        //         break;
+        //     case 2:
+        //         moveVector = -transform.forward * moveSpeed * Time.fixedDeltaTime;
+        //         break;
+        //     case 3:
+        //         rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
+        //         break;
+        //     case 4:
+        //         rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
+        //         break;
+        // }
+
+        // // Apply the movements
+        // m_AgentRb.MovePosition(m_AgentRb.position + moveVector);
+        // m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
+        // RotateWheels(moveVector.magnitude);
+
+
+        /* Use Force */
+
+        Vector3 forceVector = Vector3.zero;
+        Quaternion rotateQuaternion = Quaternion.identity;
         switch (action)
         {
             case 1:
-                moveVector = transform.forward * moveSpeed * Time.fixedDeltaTime;
+                forceVector = transform.forward * moveSpeed;
                 break;
             case 2:
-                moveVector = -transform.forward * moveSpeed * Time.fixedDeltaTime;
+                forceVector = -transform.forward * moveSpeed;
                 break;
             case 3:
+                // For rotation, you might still use MoveRotation or apply torque
                 rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
+                m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
                 break;
             case 4:
                 rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
+                m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
                 break;
         }
 
-        // Apply the movements
-        m_AgentRb.MovePosition(m_AgentRb.position + moveVector);
-        m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
-        RotateWheels(moveVector.magnitude);
-
+        // Apply the force
+        if (forceVector != Vector3.zero)
+        {
+            m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
+        }
+        RotateWheels(forceVector.magnitude);
         // Check if the current action is different from the last action
         if (action != lastAction)
         {

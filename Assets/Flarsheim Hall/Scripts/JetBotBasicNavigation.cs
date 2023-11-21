@@ -14,7 +14,7 @@ public class JetBotBasicNavigation : JetBotAgent
     public List<Transform> jetbotSpawnLocations;
     public GameObject currentGoalInstance;
     public List<Transform> goalSpawnLocations;
-
+    public GameObject floor;
     // Override the MoveAgent method if specific movement logic is needed
     public override void Initialize()
     {
@@ -24,6 +24,7 @@ public class JetBotBasicNavigation : JetBotAgent
     {
         // Implement specific basic navigation logic here
         base.MoveAgent(act);
+
     }
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -46,6 +47,13 @@ public class JetBotBasicNavigation : JetBotAgent
         if (MaxStep != 0)
         {
             AddReward(-1f / MaxStep);
+            // Check for time-based fail condition
+            if (StepCount >= MaxStep)
+            {
+                SetReward(-1f); // Negative reward for taking too long
+                EndEpisode(); // End the episode
+                floor.GetComponent<Floor>().BlinkMaterial("fail"); // Blink floor with fail material
+            }
         }
 
         MoveAgent(actionBuffers.DiscreteActions);
@@ -64,13 +72,15 @@ public class JetBotBasicNavigation : JetBotAgent
         {
             SetReward(2f);
             EndEpisode();
+            //Blink floor 
+            floor.GetComponent<Floor>().BlinkMaterial("success");
         }
 
     }
     public override void OnEpisodeBegin()
     {
         lastAction = -1;
-
+        m_AgentRb.velocity *= 0f;
         // Ensure there are available spawn locations
         if (jetbotSpawnLocations != null && jetbotSpawnLocations.Count > 0)
         {

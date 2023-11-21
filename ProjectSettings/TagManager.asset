@@ -45,6 +45,7 @@ TagManager:
   - fridge
   - door
   - visited
+  - light
   layers:
   - Default
   - TransparentFX
