@@ -45,6 +45,7 @@ TagManager:
   - fridge
   - door
   - visited
+  - laptops
   layers:
   - Default
   - TransparentFX

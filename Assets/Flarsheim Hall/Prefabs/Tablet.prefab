@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65668122333127614}
   m_Layer: 0
   m_Name: Tablet
-  m_TagString: Untagged
+  m_TagString: laptops
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
