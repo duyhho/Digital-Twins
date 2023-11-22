@@ -2,22 +2,58 @@
     "BasicNavigationJetbot": {
         "checkpoints": [
             {
-                "steps": 7168,
-                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.onnx",
-                "reward": null,
-                "creation_time": 1700437451.6737094,
+                "steps": 3499977,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-3499977.onnx",
+                "reward": 1.3759999871253967,
+                "creation_time": 1700566904.8021195,
                 "auxillary_file_paths": [
-                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.pt"
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-3499977.pt"
+                ]
+            },
+            {
+                "steps": 3999957,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-3999957.onnx",
+                "reward": 1.496999904513359,
+                "creation_time": 1700568341.8207443,
+                "auxillary_file_paths": [
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-3999957.pt"
+                ]
+            },
+            {
+                "steps": 4499911,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-4499911.onnx",
+                "reward": null,
+                "creation_time": 1700569772.697685,
+                "auxillary_file_paths": [
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-4499911.pt"
+                ]
+            },
+            {
+                "steps": 4999918,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-4999918.onnx",
+                "reward": 1.8639999777078629,
+                "creation_time": 1700571215.6006188,
+                "auxillary_file_paths": [
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-4999918.pt"
+                ]
+            },
+            {
+                "steps": 5000046,
+                "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-5000046.onnx",
+                "reward": 1.8639999777078629,
+                "creation_time": 1700571215.7178326,
+                "auxillary_file_paths": [
+                    "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-5000046.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 7168,
+            "steps": 5000046,
             "file_path": "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot.onnx",
-            "reward": null,
-            "creation_time": 1700437451.6737094,
+            "reward": 1.8639999777078629,
+            "creation_time": 1700571215.7178326,
             "auxillary_file_paths": [
-                "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-7168.pt"
+                "results\\BasicNavigationJetbot_01\\BasicNavigationJetbot\\BasicNavigationJetbot-5000046.pt"
             ]
         }
     },

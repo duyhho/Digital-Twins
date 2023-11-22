@@ -48,6 +48,7 @@ public class JetBotAgent : Agent
         if (MaxStep != 0)
         {
             AddReward(-1f / MaxStep);
+
         }
 
         MoveAgent(actionBuffers.DiscreteActions);
@@ -66,29 +67,34 @@ public class JetBotAgent : Agent
     {
         var action = act[0];
         // Debug.Log("action: " + action);
-        Vector3 moveVector = Vector3.zero;
+        /* Use Force */
+        Vector3 forceVector = Vector3.zero;
         Quaternion rotateQuaternion = Quaternion.identity;
-
         switch (action)
         {
             case 1:
-                moveVector = transform.forward * moveSpeed * Time.fixedDeltaTime;
+                // moveVector = transform.forward * moveSpeed * Time.fixedDeltaTime;
+                forceVector = transform.forward * moveSpeed;
                 break;
             case 2:
-                moveVector = -transform.forward * moveSpeed * Time.fixedDeltaTime;
+                // moveVector = -transform.forward * moveSpeed * Time.fixedDeltaTime;
+                forceVector = -transform.forward * moveSpeed;
                 break;
             case 3:
+                // For rotation, you might still use MoveRotation or apply torque
                 rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
+                m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
                 break;
             case 4:
                 rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
+                m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
                 break;
         }
-
-        // Apply the movements
-        m_AgentRb.MovePosition(m_AgentRb.position + moveVector);
-        m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
-        RotateWheels(moveVector.magnitude);
+        if (forceVector != Vector3.zero)
+        {
+            m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
+        }
+        RotateWheels(forceVector.magnitude);
 
         // Check if the current action is different from the last action
         if (action != lastAction)
