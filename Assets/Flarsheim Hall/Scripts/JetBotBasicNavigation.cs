@@ -43,6 +43,15 @@ public class JetBotBasicNavigation : JetBotAgent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        int action = actionBuffers.DiscreteActions[0];
+
+        // Add a small negative reward for taking the backward action
+        if (action == 2) // Assuming '2' is the backward action
+        {
+            // Debug.Log("negative reward: backward movement");
+
+            AddReward(-0.01f); // Adjust this value based on how strongly you want to discourage the action
+        }
         if (MaxStep != 0)
         {
             AddReward(-1f / MaxStep);
@@ -53,12 +62,15 @@ public class JetBotBasicNavigation : JetBotAgent
                 floor.GetComponent<Floor>().BlinkMaterial("fail"); // Blink floor with fail material
             }
         }
-
         MoveAgent(actionBuffers.DiscreteActions);
     }
     protected void OnCollisionEnter(Collision col)
     {
-
+        if (col.gameObject.CompareTag("wall") || col.gameObject.CompareTag("door"))
+        {
+            Debug.Log("negative reward: " + col.gameObject.tag);
+            AddReward(-0.05f);
+        }
     }
     protected void OnCollisionStay(Collision col)
     {

@@ -42798,7 +42798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3929448156632570387
 Transform:
   m_ObjectHideFlags: 0
@@ -45281,7 +45281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3929448157408825133
 Transform:
   m_ObjectHideFlags: 0
@@ -46272,7 +46272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3929448157686446305
 Transform:
   m_ObjectHideFlags: 0
@@ -46457,7 +46457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3929448157755986471
 Transform:
   m_ObjectHideFlags: 0
@@ -48380,7 +48380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3929448158453692912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 247.1, y: 3.6, z: 202.5}
+  m_LocalPosition: {x: 247.1, y: 0, z: 202.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -106336,7 +106336,7 @@ PrefabInstance:
       objectReference: {fileID: 3804024453554291031}
     - target: {fileID: 3957971845755742328, guid: e96e99fb8a1cc21429fdb5257b583466, type: 3}
       propertyPath: MaxStep
-      value: 5000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 3957971845755742328, guid: e96e99fb8a1cc21429fdb5257b583466, type: 3}
       propertyPath: currentGoalInstance
@@ -106386,6 +106386,14 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957971845755742330, guid: e96e99fb8a1cc21429fdb5257b583466, type: 3}
+      propertyPath: m_RayLength
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957971845755742330, guid: e96e99fb8a1cc21429fdb5257b583466, type: 3}
+      propertyPath: m_RaysPerDirection
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4442337867220710094, guid: e96e99fb8a1cc21429fdb5257b583466, type: 3}
       propertyPath: m_Name
       value: jetbot-small
@@ -106422,11 +106430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 647334564755347719, guid: 8877b424a58a67941ad1c40bb573cb1c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 647334564755347719, guid: 8877b424a58a67941ad1c40bb573cb1c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 647334564755347719, guid: 8877b424a58a67941ad1c40bb573cb1c, type: 3}
       propertyPath: m_LocalPosition.x

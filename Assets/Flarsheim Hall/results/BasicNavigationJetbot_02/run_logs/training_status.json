@@ -2,22 +2,22 @@
     "BasicNavigationJetbot": {
         "checkpoints": [
             {
-                "steps": 66552,
-                "file_path": "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-66552.onnx",
-                "reward": -0.26850006729364395,
-                "creation_time": 1700556678.009004,
+                "steps": 420428,
+                "file_path": "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-420428.onnx",
+                "reward": 1.9410000182688236,
+                "creation_time": 1700721028.0663533,
                 "auxillary_file_paths": [
-                    "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-66552.pt"
+                    "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-420428.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 66552,
+            "steps": 420428,
             "file_path": "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot.onnx",
-            "reward": -0.26850006729364395,
-            "creation_time": 1700556678.009004,
+            "reward": 1.9410000182688236,
+            "creation_time": 1700721028.0663533,
             "auxillary_file_paths": [
-                "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-66552.pt"
+                "results\\BasicNavigationJetbot_02\\BasicNavigationJetbot\\BasicNavigationJetbot-420428.pt"
             ]
         }
     },

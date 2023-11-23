@@ -73,21 +73,23 @@ public class JetBotAgent : Agent
         switch (action)
         {
             case 1:
-                // moveVector = transform.forward * moveSpeed * Time.fixedDeltaTime;
                 forceVector = transform.forward * moveSpeed;
                 break;
             case 2:
-                // moveVector = -transform.forward * moveSpeed * Time.fixedDeltaTime;
                 forceVector = -transform.forward * moveSpeed;
                 break;
             case 3:
-                // For rotation, you might still use MoveRotation or apply torque
                 rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
                 m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
                 break;
             case 4:
                 rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
                 m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
+                break;
+            default:
+                // Stop the Rigidbody's velocity when no action (or action 0) is selected
+                m_AgentRb.velocity = Vector3.zero;
+                m_AgentRb.angularVelocity = Vector3.zero;
                 break;
         }
         if (forceVector != Vector3.zero)
