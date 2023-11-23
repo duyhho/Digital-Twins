@@ -1,9 +1,12 @@
-# Digital Twin Navigation System for NVIDIA JetBot
+# AI-Empowered Digital Twin Navigation System for NVIDIA JetBot
 
 ## Project Description
 This project develops a Digital Twin navigation system for the NVIDIA JetBot, integrating Unity 3D to simulate real-world scenarios with a focus on obstacle detection, avoidance, and guidance. By creating a virtual replica of the JetBot in Unity 3D, the system allows for the safe and efficient testing of navigation algorithms under varied conditions, including complex obstacle-rich environments. The simulation facilitates the study and enhancement of the JetBot's response mechanisms, crucial for reliable obstacle detection and avoidance. A bidirectional communication setup between the virtual and physical JetBot ensures that insights and adaptations from the simulated trials directly inform real-world operations. This innovative approach speeds up the development of effective navigation strategies, reduces the risks and costs of physical testing, and advances the field of autonomous robotic navigation.
+## Learning Components
+### Reinforcement Learning with PPO and Curiosity
+![Reinforcement Learning GIF](https://github.com/duyhho/Digital-Twins/blob/main/Media/RL.gif)
 
-## Demo Video
+## Real-time connection to JetBot
 [![Digital Twin Navigation System for NVIDIA JetBot](https://img.youtube.com/vi/WV505kwxo0U/0.jpg)](https://www.youtube.com/watch?v=WV505kwxo0U)
 
 ## Features
