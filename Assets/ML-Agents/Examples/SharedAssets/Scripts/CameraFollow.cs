@@ -26,6 +26,7 @@ namespace Unity.MLAgentsExamples
             gameObject.transform.position =
                 Vector3.SmoothDamp(transform.position, newPosition, ref m_CamVelocity, smoothingTime, Mathf.Infinity,
                     Time.fixedDeltaTime);
+
         }
     }
 }
