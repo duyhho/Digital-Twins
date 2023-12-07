@@ -7,15 +7,33 @@ using UnityEditor;
 using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
 using System;
+using System.IO;
 public class CollabFireAgent : DungeonAgentFire
 {
     public FireLifeScript fireLifeScript;
     float parentOffsetHeight;
     public int agentCount = 1;
     public bool shouldRandomize = false;
+    List<CollabModelStats> modelStatsList = new List<CollabModelStats>();
+
+    public class CollabModelStats : ModelStats
+    {
+        // public float cumulativeTimeToReachFire = 0f;
+        // public float averageTime = 0f;
+        // public int successfulAttempts = 0;
+        // public int attemptCount = 0;
+        public float cumulativeTimeToCureFire = 0f;
+        public float averageTimeCureFire = 0f;
+        public float totalAgentsCollab = 0f;
+        public float averageAgentsCollab = 0f;
+    }
     public override void Initialize()
     {
         base.Initialize();
+        for (int i = 0; i < totalModelSets; i++)
+        {
+            modelStatsList.Add(new CollabModelStats());
+        }
         m_ResetParams = Academy.Instance.EnvironmentParameters;
     }
 
@@ -28,7 +46,6 @@ public class CollabFireAgent : DungeonAgentFire
             return;
         }
 
-        RaycastUpdateGrid(); //thiDynamicHallwayFireCollab doesn't collect any observations ,just updating grid cell status;
         if (useVectorObs)
         {
             sensor.AddObservation(agentCount);
@@ -36,14 +53,6 @@ public class CollabFireAgent : DungeonAgentFire
             //The key takeaway is that InverseTransformDirection uses the object's (in this case, the car's) current orientation to convert a direction from world space to that object's local space. 
             sensor.AddObservation(transform.InverseTransformDirection(m_AgentRb.velocity));
         }
-    }
-    protected override void RaycastUpdateGrid()
-    {
-        base.RaycastUpdateGrid();
-    }
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
     }
 
 
@@ -64,14 +73,6 @@ public class CollabFireAgent : DungeonAgentFire
     protected override void OnCollisionEnter(Collision col)
     {
         base.OnCollisionEnter(col);
-        // if (col.gameObject.CompareTag("collab_agent"))
-        // {
-        //     CollaborativeAgentScript collabComponent = col.gameObject.GetComponent<CollaborativeAgentScript>();
-        //     if (collabComponent.isAwake == false)
-        //     {
-        //         agentCount++;
-        //     }
-        // }
     }
     protected override void OnCollisionStay(Collision col)
     {
@@ -116,7 +117,7 @@ public class CollabFireAgent : DungeonAgentFire
         // base.UpdateModelStats();
         if (modelIndex >= 0)
         {
-            ModelStats currentStats = modelStatsList[modelIndex];
+            CollabModelStats currentStats = modelStatsList[modelIndex];
             float timeToReachFire = Time.time - episodeStartTime;
             currentStats.cumulativeTimeToReachFire += timeToReachFire;
 
@@ -124,13 +125,37 @@ public class CollabFireAgent : DungeonAgentFire
             float averageTime = currentStats.cumulativeTimeToReachFire / currentStats.successfulAttempts;
             currentStats.averageTime = averageTime;
 
+            currentStats.totalAgentsCollab += agentCount;
+            currentStats.averageAgentsCollab = currentStats.totalAgentsCollab / currentStats.attemptCount;
+
+            // Adjust additional time based on agent count
+            float additionalTime = 0;
+            switch (agentCount)
+            {
+                case 1:
+                    additionalTime = 6;
+                    break;
+                case 2:
+                    additionalTime = 4;
+                    break;
+                case 3:
+                    additionalTime = 2;
+                    break;
+                    // You can add more cases if needed
+            }
+
+            currentStats.cumulativeTimeToCureFire += timeToReachFire + additionalTime;
+            float averageTimeCureFire = currentStats.cumulativeTimeToCureFire / currentStats.successfulAttempts;
+            currentStats.averageTimeCureFire = averageTimeCureFire;
+
             // Include the model set in your log messages
             // Debug.Log("Model Set: " + modelIndex);
             Debug.Log("Time to reach the fire: " + timeToReachFire + " seconds");
             Debug.Log("Average time to reach the fire successfully (Model Set " + modelIndex + "): " + averageTime + " seconds");
-            Debug.Log("Success rate (Model Set " + modelIndex + "): " + ((float)currentStats.successfulAttempts / currentStats.attemptCount) * 100 + "% (" + currentStats.successfulAttempts + "-" + currentStats.attemptCount + ")");
+            Debug.Log("Success rate (Model Set " + modelIndex + "): " + ((float)currentStats.successfulAttempts / currentStats.attemptCount) * 100 + "% (" + currentStats.successfulAttempts + "/" + currentStats.attemptCount + ")");
         }
     }
+
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         base.Heuristic(actionsOut);
@@ -154,31 +179,12 @@ public class CollabFireAgent : DungeonAgentFire
     protected override void CheckCurrentEvaluationModels()
     {
         // base.CheckCurrentEvaluationModels();
-        if (isEvaluation)
-        {
-            // If all models have been tested in the current layout
-            if (modelIndex >= totalModelSets - 1)
-            {
-                modelIndex = -1;  // Reset the index to -1
-                shouldRandomize = true;
-                // ResetEnvironment(); // Generate a new environment layout here
-            }
-            modelIndex += 1;  // Increment modelIndex at the start
-
-            // Ensure modelIndex is in bounds before using it to index into modelStatsList
-            if (modelIndex < totalModelSets)
-            {
-                modelStatsList[modelIndex].attemptCount += 1;
-            }
-
-            Debug.Log("ON EPISODE END! Current Model Set: " + modelIndex);
-
-
-        }
 
         if (isEvaluation)
         {
+            //maxAttempts = how many scenarios/layouts
             bool allAttemptsExceeded = true;
+
             foreach (var modelStats in modelStatsList)
             {
                 if (modelStats.attemptCount < maxAttempts)
@@ -201,7 +207,12 @@ public class CollabFireAgent : DungeonAgentFire
                     Debug.Log(" - Average Time: " + averageTime + " seconds");
                     Debug.Log(" - Success Rate: " + successRate + "% (" + modelStats.successfulAttempts + "/" + modelStats.attemptCount + ")");
 
+                    Debug.Log(" - Agent Count: " + modelStats.averageAgentsCollab);
+                    Debug.Log(" - Average Time to Cure Fire: " + modelStats.averageTimeCureFire + " seconds");
+
+
                 }
+                ExportModelStatsToCSV(modelStatsList);
 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
 #else
@@ -210,10 +221,37 @@ public class CollabFireAgent : DungeonAgentFire
             }
 
         }
+        if (isEvaluation)
+        {
+            // If all models have been tested in the current layout
+            if (modelIndex >= totalModelSets - 1)
+            {
+                modelIndex = -1;  // Reset the index to -1
+                shouldRandomize = true;
+                // Debug.Log("shouldRandomize: true");
+                // ResetEnvironment(); // Generate a new environment layout here
+            }
+            else
+            {
+                shouldRandomize = false;
+            }
+            modelIndex += 1;  // Increment modelIndex at the start
+
+            // Ensure modelIndex is in bounds before using it to index into modelStatsList
+            if (modelIndex < totalModelSets)
+            {
+                modelStatsList[modelIndex].attemptCount += 1;
+            }
+
+            Debug.Log("ON EPISODE END! Current Model Set: " + modelIndex);
+
+
+        }
 
     }
     public override void ResetEnvironment()
     {
+        Debug.Log("Reset Environment!");
         bool randomizeCAgents = false;
         if (symbolOGoal)
         {
@@ -271,6 +309,8 @@ public class CollabFireAgent : DungeonAgentFire
                     symbolOGoal.transform.position = randomFirePosition;
                     // Debug.Log("randomFirePosition" + randomFirePosition);
                 }
+                shouldRandomize = false;
+
             }
             if (randomizeCAgents)
             {
@@ -296,13 +336,14 @@ public class CollabFireAgent : DungeonAgentFire
         }
         else
         {
-            if (modelIndex >= totalModelSets - 1)
+            Debug.Log("is eval!!");
+
+
+            if (shouldRandomize)
             {
-                if (shouldRandomize)
-                {
-                    modernRoomGenerator.ClearOldDungeon();
-                    modernRoomGenerator.Generate();
-                }
+                Debug.Log("New Generation!");
+                modernRoomGenerator.ClearOldDungeon();
+                modernRoomGenerator.Generate();
                 foreach (CollaborativeAgentScript cAgent in allCollabAgents)
                 {
                     Vector3 randomPosition = roomManager.GetRandomObjectPosition() + new Vector3(0f, parentOffsetHeight, 0f);
@@ -322,6 +363,8 @@ public class CollabFireAgent : DungeonAgentFire
                     // Debug.Log("randomFirePosition" + randomFirePosition);
                 }
             }
+
+
             else
             {
                 foreach (CollaborativeAgentScript cAgent in allCollabAgents)
@@ -358,7 +401,11 @@ public class CollabFireAgent : DungeonAgentFire
     }
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (m_Configuration != -1)
+        {
+            ConfigureAgent(m_Configuration);
+            m_Configuration = -1;
+        }
     }
 
     /// <summary>
@@ -367,37 +414,7 @@ public class CollabFireAgent : DungeonAgentFire
     /// <param name="config">The configuration identifier. Accepts values 2, 3, and others for default behavior.</param>
     protected override void ConfigureAgent(int config)
     {
-        if (!isEvaluation) //keep this for training logic
-        {
-            // Debug.Log("Config: " + config);
-            // if (twoRoomBrain == null || threeRoomBrain == null || dynamicRoomBrain == null)
-            // {
-            //     Debug.LogError("CUSTOM ERROR: One or more brain models are null. Please assign brain models in the inspector.");
-            //     return;
-            // }
-            // if (config == 2)
-            // {
-            //     SetModel("TwoRoom", twoRoomBrain);
-            // }
-            // else if (config == 3)
-            // {
-
-            //     SetModel("ThreeRoom", threeRoomBrain);
-            // }
-            // else if (config == 4)
-            // {
-            //     SetModel("FourRoom", fourRoomBrain);
-            // }
-            // else if (config == 5)
-            // {
-            //     SetModel("FiveRoom", fiveRoomBrain);
-            // }
-            // else
-            // {
-            //     SetModel("FiveRoom", dynamicRoomBrain);
-            // }
-        }
-        else //use evaluationModelSets here
+        if (isEvaluation) //keep this for training logic
         {
             Debug.Log("Config: " + config);
 
@@ -412,28 +429,63 @@ public class CollabFireAgent : DungeonAgentFire
                 // Fetch the appropriate NNModelSet based on the current modelIndex
                 NNModelSet currentModelSet = evaluationModelSets[modelIndex];
                 // Fetch the appropriate NNModel based on the config value
-                string behaviorName = config switch
-                {
-                    2 => "RoomTwo",
-                    3 => "RoomThree",
-                    4 => "RoomFour",
-                    5 => "RoomFive",
-                    _ => "RoomFive",
-                };
+                string behaviorName = "CollabRLCu_NoLearning";
 
                 int modelIndexInSet = config - 2;
                 // Debug.Log("Current Model: " + currentModelSet.Models[modelIndexInSet]);
                 if (modelIndexInSet >= 0 && modelIndexInSet < currentModelSet.Models.Count)
                 {
                     SetModel(behaviorName, currentModelSet.Models[modelIndexInSet]);
+                    Debug.Log("Current Model: " + currentModelSet.Models[modelIndexInSet]);
+
                 }
                 else
                 {
                     SetModel(behaviorName, currentModelSet.Models[currentModelSet.Models.Count - 1]);
+                    Debug.Log("Current Model: " + currentModelSet.Models[currentModelSet.Models.Count - 1]);
+
                 }
             }
 
 
         }
     }
+    public void ExportModelStatsToCSV(List<CollabModelStats> modelStatsList)
+    {
+        // Define the file path relative to the Assets directory
+        string relativePath = "Dungeonizer/Imitation Learning/Regular IL/Collab Fire/Curriculum/No Learning/Exports/ModelStats.csv";
+        string filePath = Path.Combine(Application.dataPath, relativePath);
+
+        // Ensure the directory exists
+        string directory = Path.GetDirectoryName(filePath);
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        using (StreamWriter file = new StreamWriter(filePath))
+        {
+            // Write the header line
+            file.WriteLine("Model Set, Average Time, Successful Attempts, Attempt Count, Average Agents Collaboration, Success Rate, Average Time to Cure Fire");
+
+            // Write data for each model
+            for (int i = 0; i < modelStatsList.Count; i++)
+            {
+                var modelStats = modelStatsList[i];
+                float averageTime = modelStats.cumulativeTimeToReachFire / modelStats.successfulAttempts;
+                float successRate = ((float)modelStats.successfulAttempts / modelStats.attemptCount) * 100;
+
+                // Calculate the average time to cure fire
+                float averageTimeToCureFire = modelStats.successfulAttempts > 0 ? modelStats.cumulativeTimeToCureFire / modelStats.successfulAttempts : 0;
+
+                // Create a line of CSV text
+                string line = $"{i}, {averageTime}, {modelStats.successfulAttempts}, {modelStats.attemptCount}, {modelStats.averageAgentsCollab}, {successRate}, {averageTimeToCureFire}";
+
+                // Write the line to the file
+                file.WriteLine(line);
+            }
+        }
+    }
+
+
 }
