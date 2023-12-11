@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
 using System;
 using UnityEngine.Networking;
-
+using SimpleJSON; // Assuming you are using SimpleJSON for JSON parsing
 public class JetBotAgent : Agent
 {
     protected Rigidbody m_AgentRb;  // Changed to protected
@@ -20,13 +20,33 @@ public class JetBotAgent : Agent
     public float turnSpeed = 200f; // Adjust turning speed as necessary
     protected int lastAction = -1; // Initialize with a value that doesn't correspond to any valid action
     public bool connectToFlaskAPI = false;
-    public const string RobotBaseUrl = "http://192.168.0.248:8001";
+    public bool connectToIMUFlaskAPI = false;
 
+    public const string RobotBaseUrl = "http://192.168.0.248:8001";
+    public const string IMUBaseUrl = "http://192.168.0.140:5000";
+    public float IMUoffsetToUnity = 14.5f;
+
+
+    private Quaternion targetRotation;
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
+        targetRotation = transform.rotation;
+        if (connectToIMUFlaskAPI)
+        {
+            StartCoroutine(FetchSensorData());
+        }
     }
+    private void Update()
+    {
+        if (connectToIMUFlaskAPI)
+        {
+            // Smoothly interpolate to the target rotation
+            float rotationSpeed = 2.0f; // Adjust rotation speed as needed
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
 
+    }
     public override void CollectObservations(VectorSensor sensor)
     {
         // Debug.Log("Collecting Observations");
@@ -179,6 +199,39 @@ public class JetBotAgent : Agent
             }
         }
     }
+    private IEnumerator FetchSensorData()
+    {
+        while (true)
+        {
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_rotations"))
+            {
+                yield return webRequest.SendWebRequest();
 
+                if (webRequest.isNetworkError || webRequest.isHttpError)
+                {
+                    Debug.LogError("Sensor Fetch Error: " + webRequest.error);
+                }
+                else
+                {
+                    ProcessSensorData(webRequest.downloadHandler.text);
+                }
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void ProcessSensorData(string jsonData)
+    {
+        var N = JSON.Parse(jsonData);
+        float rotationX = N[0]["rotations"]["X"].AsFloat;
+        float rotationY = N[0]["rotations"]["Y"].AsFloat;
+        float rotationZ = N[0]["rotations"]["Z"].AsFloat;
+
+
+        // Calculate the new target rotation from the IMU sensor data
+        targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationX + IMUoffsetToUnity, transform.rotation.eulerAngles.z);
+
+        Debug.Log("IMU Sensor Data: X: " + rotationX + " Y: " + rotationY + " Z: " + rotationZ);
+    }
 
 }
