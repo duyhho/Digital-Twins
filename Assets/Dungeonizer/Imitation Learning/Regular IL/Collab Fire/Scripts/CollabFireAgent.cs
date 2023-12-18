@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
 using System;
 using System.IO;
+using TMPro;
 public class CollabFireAgent : DungeonAgentFire
 {
     public FireLifeScript fireLifeScript;
@@ -15,6 +16,8 @@ public class CollabFireAgent : DungeonAgentFire
     public int agentCount = 1;
     public bool shouldRandomize = false;
     List<CollabModelStats> modelStatsList = new List<CollabModelStats>();
+    [SerializeField]
+    TMP_Text attemptText;
 
     public class CollabModelStats : ModelStats
     {
@@ -241,6 +244,10 @@ public class CollabFireAgent : DungeonAgentFire
             if (modelIndex < totalModelSets)
             {
                 modelStatsList[modelIndex].attemptCount += 1;
+                if (attemptText != null)
+                {
+                    attemptText.text = modelStatsList[modelIndex].attemptCount + " / " + maxAttempts;
+                }
             }
 
             Debug.Log("ON EPISODE END! Current Model Set: " + modelIndex);
