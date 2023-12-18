@@ -1,0 +1,71 @@
+{
+    "room_count": {
+        "lesson_num": 7
+    },
+    "should_randomize": {
+        "lesson_num": 7
+    },
+    "CollabRLCu_Curriculum_Reward_Full": {
+        "checkpoints": [
+            {
+                "steps": 3499936,
+                "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-3499936.onnx",
+                "reward": 5.272499926388264,
+                "creation_time": 1702007678.166963,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-3499936.pt"
+                ]
+            },
+            {
+                "steps": 3999939,
+                "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-3999939.onnx",
+                "reward": 5.7779998779296875,
+                "creation_time": 1702009011.9397068,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-3999939.pt"
+                ]
+            },
+            {
+                "steps": 4499887,
+                "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-4499887.onnx",
+                "reward": 5.7173333416382475,
+                "creation_time": 1702010367.0264173,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-4499887.pt"
+                ]
+            },
+            {
+                "steps": 4999983,
+                "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-4999983.onnx",
+                "reward": 5.785999774932861,
+                "creation_time": 1702011768.0330598,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-4999983.pt"
+                ]
+            },
+            {
+                "steps": 5000580,
+                "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-5000580.onnx",
+                "reward": 5.433666626612346,
+                "creation_time": 1702011768.1681702,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-5000580.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000580,
+            "file_path": "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full.onnx",
+            "reward": 5.433666626612346,
+            "creation_time": 1702011768.1681702,
+            "auxillary_file_paths": [
+                "results\\CollabRLCu_Curriculum_Reward_Full_v2_01\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-5000580.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

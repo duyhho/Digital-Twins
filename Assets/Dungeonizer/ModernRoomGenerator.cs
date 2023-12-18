@@ -1224,10 +1224,6 @@ public class ModernRoomGenerator : MonoBehaviour
             }
 
         }
-        gridManager.ResetGrid();
-
-
-
     }
     // Use this for initialization
     void Start()

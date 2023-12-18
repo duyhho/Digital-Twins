@@ -14,6 +14,8 @@ public class AgentWaterFire : DungeonAgentFire
 
     [SerializeField]
     bool m_CarryWater = false;
+    List<ModelStats> modelStatsList = new List<ModelStats>();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -28,22 +30,12 @@ public class AgentWaterFire : DungeonAgentFire
             return;
         }
 
-        RaycastUpdateGrid(); //this doesn't collect any observations ,just updating grid cell status;
         if (useVectorObs)
         {
             sensor.AddObservation(m_CarryWater ? 1 : 0);
             sensor.AddObservation(StepCount / (float)MaxStep);
         }
     }
-    protected override void RaycastUpdateGrid()
-    {
-        base.RaycastUpdateGrid();
-    }
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-    }
-
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
@@ -83,10 +75,7 @@ public class AgentWaterFire : DungeonAgentFire
         // base.OnTriggerEnter(other);
         if (other.gameObject.CompareTag("door_switch"))
         {
-            /*Reward is set in Door Button.cs script */
-            // AddReward(1f);
-            gridManager.SetDoor(transform.position);
-            gridManager.SetVisited(transform.position);
+
 
         }
         if (other.gameObject.CompareTag("water"))
@@ -115,10 +104,6 @@ public class AgentWaterFire : DungeonAgentFire
             StartCoroutine(GoalScoredSwapGroundMaterial(m_HallwaySettings.goalScoredMaterial, 0.5f));
             // StartCoroutine(SwapGoalMaterial(m_HallwaySettings.waterMaterial, 0.5f));
             StartCoroutine(DelayedEndEpisode()); // Use the coroutine here
-
-            gridManager.SetFire(transform.position);
-            gridManager.SetVisited(transform.position);
-
         }
 
 
