@@ -1,0 +1,62 @@
+{
+    "room_count": {
+        "lesson_num": 0
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLOnly": {
+        "checkpoints": [
+            {
+                "steps": 499939,
+                "file_path": "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-499939.onnx",
+                "reward": -0.9990834034979343,
+                "creation_time": 1703046294.2417705,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-499939.pt"
+                ]
+            },
+            {
+                "steps": 999939,
+                "file_path": "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-999939.onnx",
+                "reward": -0.9991667345166206,
+                "creation_time": 1703047249.2593727,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-999939.pt"
+                ]
+            },
+            {
+                "steps": 1499939,
+                "file_path": "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-1499939.onnx",
+                "reward": -0.9990834034979343,
+                "creation_time": 1703048221.5684643,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-1499939.pt"
+                ]
+            },
+            {
+                "steps": 1634540,
+                "file_path": "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-1634540.onnx",
+                "reward": null,
+                "creation_time": 1703048623.598054,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-1634540.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1634540,
+            "file_path": "results\\CollabRLOnly_01\\CollabRLOnly.onnx",
+            "reward": null,
+            "creation_time": 1703048623.598054,
+            "auxillary_file_paths": [
+                "results\\CollabRLOnly_01\\CollabRLOnly\\CollabRLOnly-1634540.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

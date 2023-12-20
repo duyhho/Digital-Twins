@@ -133,20 +133,20 @@ public class CollabFireAgent : DungeonAgentFire
 
             // Adjust additional time based on agent count
             float additionalTime = 0;
-            switch (agentCount)
-            {
-                case 1:
-                    additionalTime = 6;
-                    break;
-                case 2:
-                    additionalTime = 4;
-                    break;
-                case 3:
-                    additionalTime = 2;
-                    break;
-                    // You can add more cases if needed
-            }
-
+            // switch (agentCount)
+            // {
+            //     case 1:
+            //         additionalTime = 300;
+            //         break;
+            //     case 2:
+            //         additionalTime = 200;
+            //         break;
+            //     case 3:
+            //         additionalTime = 100;
+            //         break;
+            //         // You can add more cases if needed
+            // }
+            additionalTime = 300 / agentCount;
             currentStats.cumulativeTimeToCureFire += timeToReachFire + additionalTime;
             float averageTimeCureFire = currentStats.cumulativeTimeToCureFire / currentStats.successfulAttempts;
             currentStats.averageTimeCureFire = averageTimeCureFire;

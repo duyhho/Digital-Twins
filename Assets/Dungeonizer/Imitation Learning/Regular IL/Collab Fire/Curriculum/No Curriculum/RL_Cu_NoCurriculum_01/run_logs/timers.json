@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1695945222",
+        "python_version": "3.9.18 (main, Sep 11 2023, 14:09:26) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\dhh3hb\\Anaconda3\\envs\\ml-agents-230\\Scripts\\mlagents-learn D:\\GitHub\\MLAgents_2021\\config/FireAgent_NoCurriculum.yaml --run-id RL_Cu_NoCurriculum_01 --resume",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1695945233"
+    },
+    "total": 10.1221333,
+    "count": 1,
+    "self": 10.0089873,
+    "children": {
+        "run_training.setup": {
+            "total": 0.11297160000000028,
+            "count": 1,
+            "self": 0.11297160000000028
+        },
+        "TrainerController.start_learning": {
+            "total": 0.00017440000000013,
+            "count": 1,
+            "self": 0.0001453000000002369,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 1.590000000017966e-05,
+                    "count": 1,
+                    "self": 1.590000000017966e-05
+                },
+                "TrainerController._save_models": {
+                    "total": 1.3199999999713441e-05,
+                    "count": 1,
+                    "self": 1.3199999999713441e-05
+                }
+            }
+        }
+    }
+}
