@@ -1,0 +1,89 @@
+{
+    "room_count": {
+        "lesson_num": 0
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLCu": {
+        "checkpoints": [
+            {
+                "steps": 499930,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-499930.onnx",
+                "reward": 2.6390000879764557,
+                "creation_time": 1703754738.3642151,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-499930.pt"
+                ]
+            },
+            {
+                "steps": 999984,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-999984.onnx",
+                "reward": 3.6059999763965607,
+                "creation_time": 1703755882.8284745,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-999984.pt"
+                ]
+            },
+            {
+                "steps": 1499995,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-1499995.onnx",
+                "reward": 4.397428512573242,
+                "creation_time": 1703757082.6096878,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-1499995.pt"
+                ]
+            },
+            {
+                "steps": 1999986,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-1999986.onnx",
+                "reward": 4.581428583179202,
+                "creation_time": 1703758325.688826,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-1999986.pt"
+                ]
+            },
+            {
+                "steps": 2499905,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-2499905.onnx",
+                "reward": 4.934444430801603,
+                "creation_time": 1703759583.8540015,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-2499905.pt"
+                ]
+            },
+            {
+                "steps": 2999996,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-2999996.onnx",
+                "reward": null,
+                "creation_time": 1703760865.4701915,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-2999996.pt"
+                ]
+            },
+            {
+                "steps": 3000641,
+                "file_path": "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-3000641.onnx",
+                "reward": 4.829666698972384,
+                "creation_time": 1703760865.6229575,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-3000641.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000641,
+            "file_path": "results\\RLCu_3M\\CollabRLCu.onnx",
+            "reward": 4.829666698972384,
+            "creation_time": 1703760865.6229575,
+            "auxillary_file_paths": [
+                "results\\RLCu_3M\\CollabRLCu\\CollabRLCu-3000641.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
