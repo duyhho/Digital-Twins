@@ -380,8 +380,8 @@ public class DungeonAgentFire : Agent
             Debug.LogWarning("symbolOGoal is not set.");
         }
 
-        transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
-        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+        // transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
+        // transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
         m_AgentRb.velocity *= 0f;
     }
     protected virtual void CheckCurrentEvaluationModels()

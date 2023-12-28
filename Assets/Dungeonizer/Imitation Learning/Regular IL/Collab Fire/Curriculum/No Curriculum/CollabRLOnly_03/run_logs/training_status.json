@@ -1,0 +1,116 @@
+{
+    "room_count": {
+        "lesson_num": 0
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLOnly": {
+        "checkpoints": [
+            {
+                "steps": 999896,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-999896.onnx",
+                "reward": 5.255599808692932,
+                "creation_time": 1703321659.7193847,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-999896.pt"
+                ]
+            },
+            {
+                "steps": 1499973,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-1499973.onnx",
+                "reward": null,
+                "creation_time": 1703322908.5465286,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-1499973.pt"
+                ]
+            },
+            {
+                "steps": 1999963,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-1999963.onnx",
+                "reward": 4.216749977320433,
+                "creation_time": 1703324156.72808,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-1999963.pt"
+                ]
+            },
+            {
+                "steps": 2499908,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-2499908.onnx",
+                "reward": 5.349200069904327,
+                "creation_time": 1703325425.2285159,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-2499908.pt"
+                ]
+            },
+            {
+                "steps": 2999939,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-2999939.onnx",
+                "reward": 4.466000030438106,
+                "creation_time": 1703326687.4550216,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-2999939.pt"
+                ]
+            },
+            {
+                "steps": 3499945,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-3499945.onnx",
+                "reward": 5.84499979019165,
+                "creation_time": 1703327971.470831,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-3499945.pt"
+                ]
+            },
+            {
+                "steps": 3999989,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-3999989.onnx",
+                "reward": 5.576750013977289,
+                "creation_time": 1703329291.7820346,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-3999989.pt"
+                ]
+            },
+            {
+                "steps": 4499935,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-4499935.onnx",
+                "reward": 5.031199979782104,
+                "creation_time": 1703330621.4258988,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-4499935.pt"
+                ]
+            },
+            {
+                "steps": 4999978,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-4999978.onnx",
+                "reward": 5.439599943161011,
+                "creation_time": 1703331958.957596,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-4999978.pt"
+                ]
+            },
+            {
+                "steps": 5000030,
+                "file_path": "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-5000030.onnx",
+                "reward": 5.430666575829188,
+                "creation_time": 1703331959.0722888,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-5000030.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000030,
+            "file_path": "results\\CollabRLOnly_03\\CollabRLOnly.onnx",
+            "reward": 5.430666575829188,
+            "creation_time": 1703331959.0722888,
+            "auxillary_file_paths": [
+                "results\\CollabRLOnly_03\\CollabRLOnly\\CollabRLOnly-5000030.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

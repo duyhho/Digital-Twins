@@ -129,7 +129,7 @@ public class CollabFireAgent : DungeonAgentFire
             currentStats.averageTime = averageTime;
 
             currentStats.totalAgentsCollab += agentCount;
-            currentStats.averageAgentsCollab = currentStats.totalAgentsCollab / currentStats.attemptCount;
+            currentStats.averageAgentsCollab = currentStats.totalAgentsCollab / currentStats.successfulAttempts;
 
             // Adjust additional time based on agent count
             float additionalTime = 0;
@@ -316,7 +316,7 @@ public class CollabFireAgent : DungeonAgentFire
                     symbolOGoal.transform.position = randomFirePosition;
                     // Debug.Log("randomFirePosition" + randomFirePosition);
                 }
-                shouldRandomize = false;
+                // shouldRandomize = false;
 
             }
             if (randomizeCAgents)
@@ -396,11 +396,12 @@ public class CollabFireAgent : DungeonAgentFire
 
         transform.position = newStartPosition;
         transform.rotation = Quaternion.identity;
-        // transform.position = roomManager.GetStartPoint() + new Vector3(0f, 0.5f, 0f);
-        // transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-        m_AgentRb.velocity *= 0f;
+        m_AgentRb.velocity = Vector3.zero;
+        m_AgentRb.angularVelocity = Vector3.zero; // Reset angular velocity
         agentCount = 1;
         shouldRandomize = false;
+        // shouldRandomize = true;
+
     }
     public override void PlayWaterAndStopFire()
     {

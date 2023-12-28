@@ -1,0 +1,71 @@
+{
+    "room_count": {
+        "lesson_num": 4
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLCu_Curriculum_ProgressBased_DynamicOnly": {
+        "checkpoints": [
+            {
+                "steps": 1499959,
+                "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-1499959.onnx",
+                "reward": 4.77300001680851,
+                "creation_time": 1703568442.1625042,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-1499959.pt"
+                ]
+            },
+            {
+                "steps": 1999937,
+                "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-1999937.onnx",
+                "reward": 4.434399914741516,
+                "creation_time": 1703569676.1303089,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-1999937.pt"
+                ]
+            },
+            {
+                "steps": 2499998,
+                "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-2499998.onnx",
+                "reward": 1.937999963760376,
+                "creation_time": 1703570914.0864947,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-2499998.pt"
+                ]
+            },
+            {
+                "steps": 2999957,
+                "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-2999957.onnx",
+                "reward": 5.811999797821045,
+                "creation_time": 1703572184.486634,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-2999957.pt"
+                ]
+            },
+            {
+                "steps": 3000504,
+                "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-3000504.onnx",
+                "reward": 4.1639999349912005,
+                "creation_time": 1703572184.631895,
+                "auxillary_file_paths": [
+                    "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-3000504.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000504,
+            "file_path": "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly.onnx",
+            "reward": 4.1639999349912005,
+            "creation_time": 1703572184.631895,
+            "auxillary_file_paths": [
+                "results\\CollabRLCu_ProgressBased_DynamicOnly_3M\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly\\CollabRLCu_Curriculum_ProgressBased_DynamicOnly-3000504.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}

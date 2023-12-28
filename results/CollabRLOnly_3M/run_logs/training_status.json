@@ -1,0 +1,53 @@
+{
+    "room_count": {
+        "lesson_num": 0
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLOnly": {
+        "checkpoints": [
+            {
+                "steps": 2499996,
+                "file_path": "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-2499996.onnx",
+                "reward": 5.560500029474497,
+                "creation_time": 1703743604.8991868,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-2499996.pt"
+                ]
+            },
+            {
+                "steps": 2999943,
+                "file_path": "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-2999943.onnx",
+                "reward": 4.818000007420778,
+                "creation_time": 1703745551.450383,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-2999943.pt"
+                ]
+            },
+            {
+                "steps": 3000050,
+                "file_path": "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-3000050.onnx",
+                "reward": 4.703555547528797,
+                "creation_time": 1703745551.63291,
+                "auxillary_file_paths": [
+                    "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-3000050.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000050,
+            "file_path": "results\\CollabRLOnly_3M\\CollabRLOnly.onnx",
+            "reward": 4.703555547528797,
+            "creation_time": 1703745551.63291,
+            "auxillary_file_paths": [
+                "results\\CollabRLOnly_3M\\CollabRLOnly\\CollabRLOnly-3000050.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
