@@ -22,8 +22,8 @@ public class JetBotAgent : Agent
     public bool connectToJetbotFlaskApi = false;
     public bool connectToIMUFlaskAPI = false;
 
-    public const string RobotBaseUrl = "http://192.168.0.245:5000";
-    public const string IMUBaseUrl = "http://192.168.0.207:5005";
+    public const string RobotBaseUrl = "http://192.168.0.129:5000";
+    public const string IMUBaseUrl = "http://192.168.0.129:5000";
     public float IMUoffsetToUnity = 14.5f;
 
 
@@ -88,35 +88,35 @@ public class JetBotAgent : Agent
         var action = act[0];
         Debug.Log("action: " + action);
         // /* Use Force */
-        // Vector3 forceVector = Vector3.zero;
-        // Quaternion rotateQuaternion = Quaternion.identity;
-        // switch (action)
-        // {
-        //     case 1:
-        //         forceVector = transform.forward * moveSpeed;
-        //         break;
-        //     case 2:
-        //         forceVector = -transform.forward * moveSpeed;
-        //         break;
-        //     case 3:
-        //         rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
-        //         m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
-        //         break;
-        //     case 4:
-        //         rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
-        //         m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
-        //         break;
-        //     default:
-        //         // Stop the Rigidbody's velocity when no action (or action 0) is selected
-        //         m_AgentRb.velocity = Vector3.zero;
-        //         m_AgentRb.angularVelocity = Vector3.zero;
-        //         break;
-        // }
-        // if (forceVector != Vector3.zero)
-        // {
-        //     m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
-        // }
-        // RotateWheels(forceVector.magnitude);
+        Vector3 forceVector = Vector3.zero;
+        Quaternion rotateQuaternion = Quaternion.identity;
+        switch (action)
+        {
+            case 1:
+                forceVector = transform.forward * moveSpeed;
+                break;
+            case 2:
+                forceVector = -transform.forward * moveSpeed;
+                break;
+            case 3:
+            // rotateQuaternion = Quaternion.Euler(0f, turnSpeed * Time.fixedDeltaTime, 0f);
+            // m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
+            // break;
+            case 4:
+            // rotateQuaternion = Quaternion.Euler(0f, -turnSpeed * Time.fixedDeltaTime, 0f);
+            // m_AgentRb.MoveRotation(m_AgentRb.rotation * rotateQuaternion);
+            // break;
+            default:
+                //     // Stop the Rigidbody's velocity when no action (or action 0) is selected
+                //     m_AgentRb.velocity = Vector3.zero;
+                //     m_AgentRb.angularVelocity = Vector3.zero;
+                break;
+        }
+        if (forceVector != Vector3.zero)
+        {
+            m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
+        }
+        RotateWheels(forceVector.magnitude);
 
         // Check if the current action is different from the last action
         if (action != lastAction)
@@ -182,7 +182,7 @@ public class JetBotAgent : Agent
     }
     protected virtual IEnumerator SendCommandToRobot(string command)
     {
-        string url = command == "stop" ? $"{RobotBaseUrl}/stop" : $"{RobotBaseUrl}/move?command={command}";
+        string url = command == "stop" ? $"{RobotBaseUrl}/control?command=stop" : $"{RobotBaseUrl}/control?command={command}";
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
@@ -204,7 +204,7 @@ public class JetBotAgent : Agent
         while (true)
         {
             Debug.Log("Calling Fetch Sensor Data");
-            using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_rotations"))
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_imu"))
             {
                 yield return webRequest.SendWebRequest();
 
@@ -221,19 +221,35 @@ public class JetBotAgent : Agent
         }
     }
 
+    // private void ProcessSensorData(string jsonData)
+    // {
+    //     Debug.Log("jsonData: " + jsonData);
+    //     var N = JSON.Parse(jsonData);
+    //     float rotationX = N["X"].AsFloat;
+    //     float rotationY = N["Y"].AsFloat;
+    //     float rotationZ = N["Z"].AsFloat;
+
+
+    //     // Calculate the new target rotation from the IMU sensor data
+    //     targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationX + IMUoffsetToUnity, transform.rotation.eulerAngles.z);
+
+    //     Debug.Log("IMU Sensor Data: X: " + rotationX + " Y: " + rotationY + " Z: " + rotationZ);
+    // }
     private void ProcessSensorData(string jsonData)
     {
         Debug.Log("jsonData: " + jsonData);
         var N = JSON.Parse(jsonData);
-        float rotationX = N["X"].AsFloat;
-        float rotationY = N["Y"].AsFloat;
-        float rotationZ = N["Z"].AsFloat;
 
+        // Extract Euler angles
+        float pitch = N["euler"]["pitch"].AsFloat;
+        float roll = N["euler"]["roll"].AsFloat;
+        float yaw = N["euler"]["yaw"].AsFloat; //yaw = y axis in unity
 
         // Calculate the new target rotation from the IMU sensor data
-        targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationX + IMUoffsetToUnity, transform.rotation.eulerAngles.z);
+        // Assuming you want to use the 'yaw' value for Unity object's y-axis rotation
+        targetRotation = Quaternion.Euler(roll, -yaw + IMUoffsetToUnity, pitch);
 
-        Debug.Log("IMU Sensor Data: X: " + rotationX + " Y: " + rotationY + " Z: " + rotationZ);
+        Debug.Log("IMU Sensor Data: Roll: " + roll + " Pitch: " + pitch + " Yaw: " + yaw);
     }
 
 }
