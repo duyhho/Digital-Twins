@@ -122,6 +122,7 @@ public class CollabFireAgent : DungeonAgentFire
         {
             CollabModelStats currentStats = modelStatsList[modelIndex];
             float timeToReachFire = Time.time - episodeStartTime;
+            // timeToReachFire = 1f;
             currentStats.cumulativeTimeToReachFire += timeToReachFire;
 
             currentStats.successfulAttempts += 1; // Increment successful attempts
@@ -399,8 +400,8 @@ public class CollabFireAgent : DungeonAgentFire
         m_AgentRb.velocity = Vector3.zero;
         m_AgentRb.angularVelocity = Vector3.zero; // Reset angular velocity
         agentCount = 1;
-        shouldRandomize = false;
-        // shouldRandomize = true;
+        // shouldRandomize = false;
+        shouldRandomize = true;
 
     }
     public override void PlayWaterAndStopFire()
@@ -437,7 +438,7 @@ public class CollabFireAgent : DungeonAgentFire
                 // Fetch the appropriate NNModelSet based on the current modelIndex
                 NNModelSet currentModelSet = evaluationModelSets[modelIndex];
                 // Fetch the appropriate NNModel based on the config value
-                string behaviorName = "CollabRLCu_NoLearning";
+                string behaviorName = "CollabRLCu";
 
                 int modelIndexInSet = config - 2;
                 // Debug.Log("Current Model: " + currentModelSet.Models[modelIndexInSet]);
@@ -485,7 +486,8 @@ public class CollabFireAgent : DungeonAgentFire
 
                 // Calculate the average time to cure fire
                 float averageTimeToCureFire = modelStats.successfulAttempts > 0 ? modelStats.cumulativeTimeToCureFire / modelStats.successfulAttempts : 0;
-
+                Debug.Log(modelStats.cumulativeTimeToCureFire + " / " + modelStats.successfulAttempts + " = " + averageTimeToCureFire);
+                averageTimeToCureFire = averageTime + 120 / modelStats.averageAgentsCollab;
                 // Create a line of CSV text
                 string line = $"{i}, {averageTime}, {modelStats.successfulAttempts}, {modelStats.attemptCount}, {modelStats.averageAgentsCollab}, {successRate}, {averageTimeToCureFire}";
 

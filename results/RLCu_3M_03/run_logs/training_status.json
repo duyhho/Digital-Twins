@@ -1,0 +1,53 @@
+{
+    "room_count": {
+        "lesson_num": 0
+    },
+    "should_randomize": {
+        "lesson_num": 0
+    },
+    "CollabRLCu": {
+        "checkpoints": [
+            {
+                "steps": 2499960,
+                "file_path": "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-2499960.onnx",
+                "reward": 5.450799989700317,
+                "creation_time": 1703935977.623091,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-2499960.pt"
+                ]
+            },
+            {
+                "steps": 2999981,
+                "file_path": "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-2999981.onnx",
+                "reward": 4.8909090540625835,
+                "creation_time": 1703937175.2879488,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-2999981.pt"
+                ]
+            },
+            {
+                "steps": 3000156,
+                "file_path": "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-3000156.onnx",
+                "reward": 4.861384568306116,
+                "creation_time": 1703937175.4116673,
+                "auxillary_file_paths": [
+                    "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-3000156.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000156,
+            "file_path": "results\\RLCu_3M_03\\CollabRLCu.onnx",
+            "reward": 4.861384568306116,
+            "creation_time": 1703937175.4116673,
+            "auxillary_file_paths": [
+                "results\\RLCu_3M_03\\CollabRLCu\\CollabRLCu-3000156.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
