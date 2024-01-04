@@ -1,0 +1,53 @@
+{
+    "room_count": {
+        "lesson_num": 7
+    },
+    "should_randomize": {
+        "lesson_num": 7
+    },
+    "CollabRLCu_Curriculum_Reward_Full": {
+        "checkpoints": [
+            {
+                "steps": 499995,
+                "file_path": "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-499995.onnx",
+                "reward": 0.341833271086216,
+                "creation_time": 1704278364.4630764,
+                "auxillary_file_paths": [
+                    "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-499995.pt"
+                ]
+            },
+            {
+                "steps": 999874,
+                "file_path": "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-999874.onnx",
+                "reward": null,
+                "creation_time": 1704279439.1109216,
+                "auxillary_file_paths": [
+                    "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-999874.pt"
+                ]
+            },
+            {
+                "steps": 1062949,
+                "file_path": "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-1062949.onnx",
+                "reward": 2.1256666282812753,
+                "creation_time": 1704279634.9437103,
+                "auxillary_file_paths": [
+                    "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-1062949.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1062949,
+            "file_path": "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full.onnx",
+            "reward": 2.1256666282812753,
+            "creation_time": 1704279634.9437103,
+            "auxillary_file_paths": [
+                "results\\RLCu_RewardBased_Demo\\CollabRLCu_Curriculum_Reward_Full\\CollabRLCu_Curriculum_Reward_Full-1062949.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
