@@ -22,16 +22,20 @@ public class JetBotAgent : Agent
     public bool connectToJetbotFlaskApi = false;
     public bool connectToIMUFlaskAPI = false;
 
-    public const string RobotBaseUrl = "http://192.168.0.129:5000";
-    public const string IMUBaseUrl = "http://192.168.0.129:5000";
+    public const string RobotBaseUrl = "http://192.168.0.142:5000";
+    public const string IMUBaseUrl = "http://192.168.0.142:5000";
     public float IMUoffsetToUnity = 14.5f;
-
+    public float translationScaleFactor = 5f;
 
     private Quaternion targetRotation;
+    private Vector3 jetbotOrigin;
+    private Vector3 lastUpdatedPosition;
+
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
         targetRotation = transform.rotation;
+        jetbotOrigin = transform.localPosition;
         if (connectToIMUFlaskAPI)
         {
             StartCoroutine(FetchSensorData());
@@ -42,8 +46,11 @@ public class JetBotAgent : Agent
         if (connectToIMUFlaskAPI)
         {
             // Smoothly interpolate to the target rotation
-            float rotationSpeed = 2.0f; // Adjust rotation speed as needed
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // float rotationSpeed = 0.5f; // Adjust rotation speed as needed
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            // StartCoroutine(RotateOverTime(transform.rotation, targetRotation, 1f / turnSpeed));
+            // Smoothly interpolate to the target position
+            transform.localPosition = Vector3.Lerp(transform.localPosition, lastUpdatedPosition, moveSpeed * Time.deltaTime);
         }
 
     }
@@ -112,10 +119,7 @@ public class JetBotAgent : Agent
                 //     m_AgentRb.angularVelocity = Vector3.zero;
                 break;
         }
-        if (forceVector != Vector3.zero)
-        {
-            m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
-        }
+
         RotateWheels(forceVector.magnitude);
 
         // Check if the current action is different from the last action
@@ -145,7 +149,13 @@ public class JetBotAgent : Agent
             // Send the command to the robot
             if (connectToJetbotFlaskApi)
                 StartCoroutine(SendCommandToRobot(command));
-
+            else
+            {
+                if (forceVector != Vector3.zero)
+                {
+                    m_AgentRb.AddForce(forceVector, ForceMode.VelocityChange);
+                }
+            }
             // Update the last action
             lastAction = action;
         }
@@ -204,7 +214,7 @@ public class JetBotAgent : Agent
         while (true)
         {
             Debug.Log("Calling Fetch Sensor Data");
-            using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_imu"))
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_tf"))
             {
                 yield return webRequest.SendWebRequest();
 
@@ -220,36 +230,47 @@ public class JetBotAgent : Agent
             yield return new WaitForSeconds(0.1f);
         }
     }
-
-    // private void ProcessSensorData(string jsonData)
-    // {
-    //     Debug.Log("jsonData: " + jsonData);
-    //     var N = JSON.Parse(jsonData);
-    //     float rotationX = N["X"].AsFloat;
-    //     float rotationY = N["Y"].AsFloat;
-    //     float rotationZ = N["Z"].AsFloat;
-
-
-    //     // Calculate the new target rotation from the IMU sensor data
-    //     targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationX + IMUoffsetToUnity, transform.rotation.eulerAngles.z);
-
-    //     Debug.Log("IMU Sensor Data: X: " + rotationX + " Y: " + rotationY + " Z: " + rotationZ);
-    // }
     private void ProcessSensorData(string jsonData)
     {
         Debug.Log("jsonData: " + jsonData);
         var N = JSON.Parse(jsonData);
 
         // Extract Euler angles
-        float pitch = N["euler"]["pitch"].AsFloat;
-        float roll = N["euler"]["roll"].AsFloat;
-        float yaw = N["euler"]["yaw"].AsFloat; //yaw = y axis in unity
+        float pitch = N["rotation_euler_degrees"]["pitch"].AsFloat;
+        float roll = N["rotation_euler_degrees"]["roll"].AsFloat;
+        float yaw = N["rotation_euler_degrees"]["yaw"].AsFloat;
+
+        // Extract translation and apply axis mapping
+        float jetbotX = N["translation"]["x"].AsFloat * translationScaleFactor;
+        float jetbotY = N["translation"]["y"].AsFloat * translationScaleFactor;
+        float jetbotZ = N["translation"]["z"].AsFloat * translationScaleFactor;
+
+        // Map JetBot's coordinate system to Unity's coordinate system
+        Vector3 mappedPosition = new Vector3(-jetbotY, jetbotZ, jetbotX);
 
         // Calculate the new target rotation from the IMU sensor data
-        // Assuming you want to use the 'yaw' value for Unity object's y-axis rotation
         targetRotation = Quaternion.Euler(roll, -yaw + IMUoffsetToUnity, pitch);
 
+        lastUpdatedPosition = mappedPosition + jetbotOrigin;
         Debug.Log("IMU Sensor Data: Roll: " + roll + " Pitch: " + pitch + " Yaw: " + yaw);
+        Debug.Log("Mapped Translation Data: X: " + mappedPosition.x + " Y: " + mappedPosition.y + " Z: " + mappedPosition.z);
     }
-
+    IEnumerator RotateOverTime(Quaternion originalRotation, Quaternion finalRotation, float duration)
+    {
+        if (duration > 0f)
+        {
+            float startTime = Time.time;
+            float endTime = startTime + duration;
+            transform.rotation = originalRotation;
+            yield return null;
+            while (Time.time < endTime)
+            {
+                float progress = (Time.time - startTime) / duration;
+                // progress will equal 0 at startTime, 1 at endTime.
+                transform.rotation = Quaternion.Slerp(originalRotation, finalRotation, progress);
+                yield return null;
+            }
+        }
+        transform.rotation = finalRotation;
+    }
 }
