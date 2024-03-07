@@ -15,6 +15,7 @@ public class JetBotBasicNavigation : JetBotAgent
     public GameObject currentGoalInstance;
     public List<Transform> goalSpawnLocations;
     public GameObject floor;
+    float lastLocationIndex = -1f;
     // Override the MoveAgent method if specific movement logic is needed
     public override void Initialize()
     {
@@ -83,39 +84,54 @@ public class JetBotBasicNavigation : JetBotAgent
             floor.GetComponent<Floor>().BlinkMaterial("success");
             SetReward(2f);
             EndEpisode();
+            if (connectToJetbotFlaskApi)
+            {
+                SendCommandToRobot("stop");
+                StartCoroutine(Wait());
+            }
         }
-
     }
+
+    private IEnumerator Wait()
+    {
+        // Wait 1 second
+        yield return new WaitForSeconds(1);
+    }
+
     public override void OnEpisodeBegin()
     {
         lastAction = -1;
         m_AgentRb.velocity *= 0f;
         // Ensure there are available spawn locations
-        if (jetbotSpawnLocations != null && jetbotSpawnLocations.Count > 0)
-        {
-            // Choose a random index from the list
-            int randomIndex = UnityEngine.Random.Range(0, jetbotSpawnLocations.Count);
-            // randomIndex = 0;
-            // Get the random location's position and rotation
-            Transform randomLocation = jetbotSpawnLocations[randomIndex];
-            Vector3 spawnPosition = randomLocation.position;
-            Quaternion spawnRotation = randomLocation.rotation;
+        // if (jetbotSpawnLocations != null && jetbotSpawnLocations.Count > 0)
+        // {
+        //     // Choose a random index from the list
+        //     int randomIndex = UnityEngine.Random.Range(0, jetbotSpawnLocations.Count);
+        //     // randomIndex = 0;
+        //     // Get the random location's position and rotation
+        //     Transform randomLocation = jetbotSpawnLocations[randomIndex];
+        //     Vector3 spawnPosition = randomLocation.position;
+        //     Quaternion spawnRotation = randomLocation.rotation;
 
-            // Set the JetBot's position and rotation
-            transform.position = spawnPosition;
-            transform.rotation = spawnRotation;
-        }
-        else
-        {
-            Debug.LogWarning("JetBot spawn locations list is empty or null!");
-        }
+        //     // Set the JetBot's position and rotation
+        //     transform.position = spawnPosition;
+        //     transform.rotation = spawnRotation;
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("JetBot spawn locations list is empty or null!");
+        // }
 
         // Ensure there are available goal spawn locations
         if (goalSpawnLocations != null && goalSpawnLocations.Count > 0)
         {
             // Choose a random index from the list
             int randomIndex = UnityEngine.Random.Range(0, goalSpawnLocations.Count);
-
+            while (lastLocationIndex == randomIndex)
+            {
+                randomIndex = UnityEngine.Random.Range(0, goalSpawnLocations.Count);
+            }
+            lastLocationIndex = randomIndex;
             // Get the random location's position and rotation
             Transform randomLocation = goalSpawnLocations[randomIndex];
             Vector3 spawnPosition = randomLocation.position;
