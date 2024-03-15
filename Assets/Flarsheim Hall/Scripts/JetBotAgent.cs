@@ -30,18 +30,21 @@ public class JetBotAgent : Agent
     public float translationScaleFactor = 5f;
 
     private Quaternion targetRotation;
-    private Vector3 jetbotOrigin;
+    public Vector3 jetbotOrigin;
+    public Vector3 jetbotOriginGlobal;
+
     private Vector3 lastUpdatedPosition;
     private Transform baseFootprintTransform;
     ROSConnection ros;
     private float linearSpeed = 0.25f;
     private float angularSpeed = 1.0f;
-    public string topicName = "cmd_vel";
+    public string topicName = "/cmd_vel";
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
         targetRotation = transform.rotation;
         jetbotOrigin = transform.localPosition;
+        jetbotOriginGlobal = transform.position;
         if (connectToIMUFlaskAPI)
         {
             // StartCoroutine(FetchSensorData());
@@ -112,7 +115,7 @@ public class JetBotAgent : Agent
     public virtual void MoveAgent(ActionSegment<int> act)
     {
         var action = act[0];
-        Debug.Log("action: " + action + ", moveSpeed: " + moveSpeed + ", turnSpeed: " + turnSpeed);
+        // Debug.Log("action: " + action + ", moveSpeed: " + moveSpeed + ", turnSpeed: " + turnSpeed);
         // /* Use Force */
         Vector3 forceVector = Vector3.zero;
         Quaternion rotateQuaternion = Quaternion.identity;
@@ -206,23 +209,24 @@ public class JetBotAgent : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActionsOut = actionsOut.DiscreteActions;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             discreteActionsOut[0] = 3;
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             discreteActionsOut[0] = 1;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             discreteActionsOut[0] = 4;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             discreteActionsOut[0] = 2;
         }
     }
+
     // protected virtual IEnumerator SendCommandToRobot(string command)
     // {
     //     string url = command == "stop" ? $"{RobotBaseUrl}/control?command=stop" : $"{RobotBaseUrl}/control?command={command}";
@@ -268,7 +272,7 @@ public class JetBotAgent : Agent
     {
         while (true)
         {
-            Debug.Log("Calling Fetch Sensor Data");
+            // Debug.Log("Calling Fetch Sensor Data");
             using (UnityWebRequest webRequest = UnityWebRequest.Get(IMUBaseUrl + "/get_tf"))
             {
                 yield return webRequest.SendWebRequest();
@@ -287,7 +291,7 @@ public class JetBotAgent : Agent
     }
     private void FetchSensorDataROSTCP()
     {
-        Debug.Log("Calling Fetch Sensor Data through ROS-TCP");
+        // Debug.Log("Calling Fetch Sensor Data through ROS-TCP");
         GameObject baseFootprint = GameObject.Find("map/odom/base_footprint");
         if (baseFootprint != null)
         {
